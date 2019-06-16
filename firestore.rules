@@ -5,6 +5,11 @@ service cloud.firestore {
       allow read, write: if "SUPER_ADMIN" in get(/databases/$(database)/documents/users/$(request.auth.uid)).data.access;
     }
 
+    match /access/{doc} {
+      allow read;
+      allow write: if "SUPER_ADMIN" in get(/databases/$(database)/documents/access/$(request.auth.uid).data.roles)
+    }
+
     match /registrations/{registration} {
       allow read, write: if "SUPER_ADMIN" in get(/databases/$(database)/documents/users/$(request.auth.uid)).data.access;
     }
