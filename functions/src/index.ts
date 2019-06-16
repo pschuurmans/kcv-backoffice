@@ -19,7 +19,7 @@ function createUserDoc(user: any) {
 
 function createDefaultAccessDoc(uid: number) {
     const data = {
-        access: []
+        roles: []
     };
 
     return admin.firestore().collection('access').doc(uid).set(data);
