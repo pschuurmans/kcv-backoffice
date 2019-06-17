@@ -1,5 +1,9 @@
 service cloud.firestore {
   match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
     match /users/{userId} {
       allow read, write: if request.auth.uid == userId;
       allow read, write: if "SUPER_ADMIN" in get(/databases/$(database)/documents/users/$(request.auth.uid)).data.access;
@@ -33,6 +37,14 @@ service cloud.firestore {
     match /declarations/{doc} {
       allow write;
       allow read, write: if "SUPER_ADMIN" in get(/databases/$(database)/documents/users/$(request.auth.uid)).data.access;
+    }
+
+    function isOwner(userId) {
+      return request.auth.uid == userId;
+    }
+
+    function isAdmin() {
+      return "ADMIN" in get(/databases/$(database)/documents/access/$(request.auth.uid).data.roles);
     }
   }
 }
