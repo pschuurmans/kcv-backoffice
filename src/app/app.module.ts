@@ -6,7 +6,7 @@ import { AppComponent } from './containers/app/app.component';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { AngularFireFunctionsModule } from '@angular/fire/functions';
+import { AngularFireFunctionsModule, FUNCTIONS_REGION, FUNCTIONS_ORIGIN } from '@angular/fire/functions';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { NotFoundComponent } from './containers/not-found/not-found.component';
@@ -42,7 +42,10 @@ import { RegistrationsComponent } from './modules/registrations/containers/regis
   ],
   providers: [
     AuthService,
-    AuthGuard
+    AuthGuard,
+    { provide: FUNCTIONS_REGION, useValue: 'us-central1' },
+    { provide: FUNCTIONS_ORIGIN, useValue: 'https://dev-kcv-backoffice.web.app' }
+    // { provide: FUNCTIONS_ORIGIN, useValue: 'http://localhost:5000' }
   ],
   bootstrap: [AppComponent]
 })
