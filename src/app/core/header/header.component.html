@@ -1,0 +1,43 @@
+<div *ngIf="auth.user$ | async" class="nav-margin">
+  <nav class="navbar is-light" role="navigation" aria-label="main navigation" *ngIf="auth.user$!==null">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://bulma.io">
+        <img src="../assets/logo.png" width="112" height="28">
+      </a>
+
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+        data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+          <a class="navbar-item" routerLink="/">
+            Home
+          </a>
+          <a class="navbar-item" routerLink="/items">
+            Items
+          </a>
+          <a class="navbar-item" routerLink="/registrations">
+            Registraties
+          </a>
+      </div>
+
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            <a class="button is-primary" routerLink="my-profile">
+              Mijn profiel
+            </a>
+            <a class="button is-light" (click)="auth.signOut()">
+              Uitloggen
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>

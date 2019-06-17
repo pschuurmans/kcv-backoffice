@@ -5,17 +5,16 @@ service cloud.firestore {
     }
 
     match /users/{userId} {
-      allow read, write: if request.auth.uid == userId;
-      allow read, write: if "SUPER_ADMIN" in get(/databases/$(database)/documents/users/$(request.auth.uid)).data.access;
+      allow read, write: if isOwner(userId) || isAdmin();
     }
 
     match /access/{doc} {
       allow read;
-      allow write: if "SUPER_ADMIN" in get(/databases/$(database)/documents/access/$(request.auth.uid).data.roles)
+      allow write: if isAdmin();
     }
 
     match /registrations/{registration} {
-      allow read, write: if "SUPER_ADMIN" in get(/databases/$(database)/documents/users/$(request.auth.uid)).data.access;
+      allow read, write: if isAdmin();
     }
 
     match /events/{event} {
@@ -39,10 +38,15 @@ service cloud.firestore {
       allow read, write: if "SUPER_ADMIN" in get(/databases/$(database)/documents/users/$(request.auth.uid)).data.access;
     }
 
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    function userExists() {
+      return exists(/databases/$(database)/documents/users/$(request.auth.uid));
+    }
     function isOwner(userId) {
       return request.auth.uid == userId;
     }
-
     function isAdmin() {
       return "ADMIN" in get(/databases/$(database)/documents/access/$(request.auth.uid).data.roles);
     }
