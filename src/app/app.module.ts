@@ -6,6 +6,7 @@ import { AppComponent } from './containers/app/app.component';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireFunctionsModule } from '@angular/fire/functions';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { NotFoundComponent } from './containers/not-found/not-found.component';
@@ -35,6 +36,7 @@ import { RegistrationsComponent } from './modules/registrations/containers/regis
     AngularFireModule.initializeApp(environment.firebase), // imports firebase/app needed for everything
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
+    AngularFireFunctionsModule,
     AngularFireStorageModule, // imports firebase/storage only needed for storage features,
     AppRoutingModule
   ],
