@@ -17,6 +17,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './modules/dashboad/containers/dashboard/dashboard.component';
 import { HeaderComponent } from './core/header/header.component';
 import { MyProfileComponent } from './modules/my-profile/containers/my-profile/my-profile.component';
+import { RegistrationsComponent } from './modules/registrations/containers/registrations/registrations.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { MyProfileComponent } from './modules/my-profile/containers/my-profile/m
     DashboardComponent,
     HeaderComponent,
     MyProfileComponent,
+    RegistrationsComponent,
   ],
   imports: [
     BrowserModule,
