@@ -3,12 +3,18 @@ import * as functions from 'firebase-functions';
 const admin = require('firebase-admin');
 admin.initializeApp();
 
-exports.createUserProfile = functions.auth.user().onCreate((user) => {
-    createUserDoc(user);
-    createDefaultAccessDoc(+user.uid);
+exports.addUser = functions.https.onCall((data, context) => {
+    console.log(data);
+    createUser(data);
+    createDefaultAccess(data);
 });
 
-function createUserDoc(user: any) {
+// exports.createUserProfile = functions.auth.user().onCreate((user) => {
+//     createUserDoc(user);
+//     createDefaultAccessDoc(user.uid);
+// });
+
+function createUser(user: any) {
     const data = {
         displayName: user.displayName,
         email: user.email,
@@ -19,7 +25,7 @@ function createUserDoc(user: any) {
     return admin.firestore().collection('users').doc(user.uid).set(data);
 }
 
-function createDefaultAccessDoc(uid: number) {
+function createDefaultAccess(uid: string) {
     const data = {
         roles: []
     };
