@@ -11,7 +11,9 @@ exports.createUserProfile = functions.auth.user().onCreate((user) => {
 function createUserDoc(user: any) {
     const data = {
         displayName: user.displayName,
-        email: user.email
+        email: user.email,
+        photoURL: user.photoURL,
+        uid: user.uid
     };
 
     return admin.firestore().collection('users').doc(user.uid).set(data);
@@ -19,7 +21,7 @@ function createUserDoc(user: any) {
 
 function createDefaultAccessDoc(uid: number) {
     const data = {
-        access: []
+        roles: []
     };
 
     return admin.firestore().collection('access').doc(uid).set(data);
