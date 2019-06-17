@@ -14,13 +14,15 @@ import { AuthService } from './core/auth/auth.service';
 import { AuthGuard } from './core/auth/auth.guard';
 import { ItemsComponent } from './modules/items/containers/items/items.component';
 import { AppRoutingModule } from './app-routing.module';
+import { DashboardComponent } from './modules/dashboad/containers/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NotFoundComponent,
     LoginComponent,
-    ItemsComponent
+    ItemsComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
