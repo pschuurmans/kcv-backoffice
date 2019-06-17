@@ -15,6 +15,8 @@ import { AuthGuard } from './core/auth/auth.guard';
 import { ItemsComponent } from './modules/items/containers/items/items.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './modules/dashboad/containers/dashboard/dashboard.component';
+import { HeaderComponent } from './core/header/header.component';
+import { MyProfileComponent } from './modules/my-profile/containers/my-profile/my-profile.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { DashboardComponent } from './modules/dashboad/containers/dashboard/dash
     LoginComponent,
     ItemsComponent,
     DashboardComponent,
+    HeaderComponent,
+    MyProfileComponent,
   ],
   imports: [
     BrowserModule,
