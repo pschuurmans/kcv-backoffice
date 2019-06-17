@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AuthService } from 'src/app/core/auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,4 +8,5 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class AppComponent {
 
+  constructor(public auth: AuthService) {}
 }
