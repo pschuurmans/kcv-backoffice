@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './containers/app/app.component';
 
@@ -19,6 +20,7 @@ import { DashboardComponent } from './modules/dashboad/containers/dashboard/dash
 import { HeaderComponent } from './core/header/header.component';
 import { MyProfileComponent } from './modules/my-profile/containers/my-profile/my-profile.component';
 import { RegistrationsComponent } from './modules/registrations/containers/registrations/registrations.component';
+import { RegisterComponent } from './containers/register/register.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { RegistrationsComponent } from './modules/registrations/containers/regis
     HeaderComponent,
     MyProfileComponent,
     RegistrationsComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,9 @@ import { RegistrationsComponent } from './modules/registrations/containers/regis
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
     AngularFireFunctionsModule,
     AngularFireStorageModule, // imports firebase/storage only needed for storage features,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     AuthService,
