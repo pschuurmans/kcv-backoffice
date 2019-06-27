@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/core/auth/auth.service';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -7,10 +8,22 @@ import { AuthService } from 'src/app/core/auth/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  credentials = new FormGroup({
+    email: new FormControl(''),
+    password: new FormControl(''),
+  });
 
-  constructor(public auth: AuthService) { }
+  constructor(private auth: AuthService) { }
 
   ngOnInit() {
+  }
+
+  onLogin() {
+    this.auth.signInWithEmailAndPassword(this.credentials.value);
+  }
+
+  onLoginWithGoogle() {
+    this.auth.signInWithGoogle();
   }
 
 }

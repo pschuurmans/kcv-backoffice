@@ -11,6 +11,7 @@ import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { User } from './user';
 import { AngularFireFunctions } from '@angular/fire/functions';
+import { EmailPasswordCredentials } from './email-password-credentials';
 
 @Injectable({
   providedIn: 'root'
@@ -35,29 +36,28 @@ export class AuthService {
     );
   }
 
-  async googleSignin() {
+  async signInWithEmailAndPassword(credentials: EmailPasswordCredentials) {
+    const result = await this.afAuth.auth.signInWithEmailAndPassword(credentials.email, credentials.password);
+    await this.updateUserData(result.user);
+    return this.router.navigate(['/dashboard']);
+  }
+
+  async createUserWithEmailAndPassword(credentials: EmailPasswordCredentials) {
+    const result = await this.afAuth.auth.createUserWithEmailAndPassword(credentials.email, credentials.password);
+    await this.updateUserData(result.user);
+    return this.router.navigate(['/dashboard']);
+  }
+
+  async signInWithGoogle() {
     const provider = new auth.GoogleAuthProvider();
     const credential = await this.afAuth.auth.signInWithPopup(provider);
-    // this.updateUserData(credential.user);
-    this.addUser(credential.user);
+    this.updateUserData(credential.user);
     return this.router.navigate(['/']);
   }
 
   async signOut() {
     await this.afAuth.auth.signOut();
     return this.router.navigate(['/login']);
-  }
-
-  private addUser({ uid, email, displayName, photoURL }: User) {
-    const data = {
-      uid,
-      email,
-      displayName,
-      photoURL
-    };
-
-    const callable = this.fns.httpsCallable('addUser');
-    callable(data);
   }
 
   private updateUserData({ uid, email, displayName, photoURL }: User) {
