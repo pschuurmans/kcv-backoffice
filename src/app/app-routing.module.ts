@@ -8,11 +8,14 @@ import { DashboardComponent } from './modules/dashboad/containers/dashboard/dash
 import { NotFoundComponent } from './containers/not-found/not-found.component';
 import { MyProfileComponent } from './modules/my-profile/containers/my-profile/my-profile.component';
 import { RegistrationsComponent } from './modules/registrations/containers/registrations/registrations.component';
+import { RegisterComponent } from './containers/register/register.component';
+import { LoginGuard } from './core/auth/login.guard';
 
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
+  { path: 'register', component: RegisterComponent, canActivate: [LoginGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'items', component: ItemsComponent, canActivate: [AuthGuard] },
   { path: 'registrations', component: RegistrationsComponent, canActivate: [AuthGuard] },
