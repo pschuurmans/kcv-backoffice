@@ -21,6 +21,7 @@ import { HeaderComponent } from './core/header/header.component';
 import { MyProfileComponent } from './modules/my-profile/containers/my-profile/my-profile.component';
 import { RegistrationsComponent } from './modules/registrations/containers/registrations/registrations.component';
 import { RegisterComponent } from './containers/register/register.component';
+import { NoAccessComponent } from './containers/no-access/no-access.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { RegisterComponent } from './containers/register/register.component';
     MyProfileComponent,
     RegistrationsComponent,
     RegisterComponent,
+    NoAccessComponent,
   ],
   imports: [
     BrowserModule,
