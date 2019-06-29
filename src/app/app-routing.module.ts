@@ -16,8 +16,8 @@ import { NoAccessComponent } from './containers/no-access/no-access.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
-  { path: 'register', component: RegisterComponent, canActivate: [LoginGuard] },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard, AccessGuard] },
   { path: 'items', component: ItemsComponent, canActivate: [AuthGuard, AccessGuard] },
   { path: 'registrations', component: RegistrationsComponent, canActivate: [AuthGuard, AccessGuard] },
