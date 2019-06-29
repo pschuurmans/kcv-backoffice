@@ -37,22 +37,31 @@ export class AuthService {
   }
 
   async signInWithEmailAndPassword(credentials: EmailPasswordCredentials) {
-    const result = await this.afAuth.auth.signInWithEmailAndPassword(credentials.email, credentials.password);
-    await this.updateUserData(result.user);
-    return this.router.navigate(['/dashboard']);
+    await this.afAuth.auth.signInWithEmailAndPassword(credentials.email, credentials.password)
+      .then(data => {
+        this.updateUserData(data.user);
+        return this.router.navigate(['/dashboard']);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   async createUserWithEmailAndPassword(credentials: EmailPasswordCredentials) {
     const result = await this.afAuth.auth.createUserWithEmailAndPassword(credentials.email, credentials.password);
     await this.updateUserData(result.user);
-    return this.router.navigate(['/dashboard']);
+    await this.addDefaultAccessDoc(result.user.uid);
+    return this.router.navigate(['/my-profile']);
   }
 
   async signInWithGoogle() {
     const provider = new auth.GoogleAuthProvider();
     const credential = await this.afAuth.auth.signInWithPopup(provider);
     this.updateUserData(credential.user);
-    return this.router.navigate(['/']);
+    if (credential.additionalUserInfo.isNewUser) {
+      this.addDefaultAccessDoc(credential.user.uid);
+    }
+    return this.router.navigate(['/my-profile']);
   }
 
   async signOut() {
@@ -72,5 +81,10 @@ export class AuthService {
     };
 
     return userRef.set(data, { merge: true });
+  }
+
+  async addDefaultAccessDoc(uid) {
+    const callable = await this.fns.httpsCallable('addDefaultAccessDoc');
+    callable({ uid });
   }
 }
