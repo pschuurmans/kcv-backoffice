@@ -22,6 +22,8 @@ import { MyProfileComponent } from './modules/my-profile/containers/my-profile/m
 import { RegistrationsComponent } from './modules/registrations/containers/registrations/registrations.component';
 import { RegisterComponent } from './containers/register/register.component';
 import { NoAccessComponent } from './containers/no-access/no-access.component';
+import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -45,14 +47,17 @@ import { NoAccessComponent } from './containers/no-access/no-access.component';
     AngularFireStorageModule, // imports firebase/storage only needed for storage features,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSnackBarModule,
+    BrowserAnimationsModule
   ],
   providers: [
     AuthService,
     AuthGuard,
     { provide: FUNCTIONS_REGION, useValue: 'us-central1' },
-    { provide: FUNCTIONS_ORIGIN, useValue: 'https://dev-kcv-backoffice.web.app' }
-    // { provide: FUNCTIONS_ORIGIN, useValue: 'http://localhost:5000' }
+    // { provide: FUNCTIONS_ORIGIN, useValue: 'https://dev-kcv-backoffice.web.app' }
+    { provide: FUNCTIONS_ORIGIN, useValue: 'http://localhost:5000' },
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 } }
   ],
   bootstrap: [AppComponent]
 })
