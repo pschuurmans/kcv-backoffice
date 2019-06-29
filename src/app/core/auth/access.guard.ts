@@ -22,13 +22,18 @@ export class AccessGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     this.afAuth.user.subscribe(
       data => {
-        this.afs.doc<Access>(`access/${data.uid}`).valueChanges().subscribe(
-          doc => {
-            if (!doc.roles.includes('ADMIN')) {
+        this.afs.doc<Access>(`access/${data.uid}`).valueChanges()
+          .subscribe(
+            doc => {
+              if (!doc.roles.includes('ADMIN')) {
+                this.router.navigate(['/no-access']);
+              }
+            },
+            error => {
+              console.log(error);
               this.router.navigate(['/no-access']);
             }
-          }
-        );
+          );
       }
     );
     return true;
