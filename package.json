@@ -26,6 +26,7 @@
     "@angular/platform-browser": "~8.0.0",
     "@angular/platform-browser-dynamic": "~8.0.0",
     "@angular/router": "~8.0.0",
+    "@sentry/browser": "^5.5.0",
     "bulma": "^0.7.5",
     "firebase": "^6.2.0",
     "firebase-functions": "^3.0.1",

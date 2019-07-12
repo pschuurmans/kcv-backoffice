@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Injectable, ErrorHandler } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './containers/app/app.component';
@@ -24,6 +24,21 @@ import { RegisterComponent } from './containers/register/register.component';
 import { NoAccessComponent } from './containers/no-access/no-access.component';
 import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import * as Sentry from '@sentry/browser';
+
+Sentry.init({
+  dsn: 'https://64b2fcd301c94ccbb47204888d3071f0@sentry.io/1503763'
+});
+
+@Injectable()
+export class SentryErrorHandler implements ErrorHandler {
+  constructor() {}
+  handleError(error) {
+    const eventId = Sentry.captureException(error.originalError || error);
+    Sentry.showReportDialog({ eventId });
+  }
+}
 
 @NgModule({
   declarations: [
@@ -57,7 +72,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     { provide: FUNCTIONS_REGION, useValue: 'us-central1' },
     // { provide: FUNCTIONS_ORIGIN, useValue: 'https://dev-kcv-backoffice.web.app' }
     { provide: FUNCTIONS_ORIGIN, useValue: 'http://localhost:5000' },
-    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 } }
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 } },
+    { provide: ErrorHandler, useClass: SentryErrorHandler }
   ],
   bootstrap: [AppComponent]
 })
