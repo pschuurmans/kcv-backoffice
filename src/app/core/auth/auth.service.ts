@@ -39,8 +39,8 @@ export class AuthService {
   async signInWithEmailAndPassword(credentials: EmailPasswordCredentials) {
     await this.afAuth.auth.signInWithEmailAndPassword(credentials.email, credentials.password)
       .then(data => {
-        this.updateUserData(data.user);
-        return this.router.navigate(['/dashboard']);
+        this.updateUserDoc(data.user);
+        return this.router.navigate(['/my-profile']);
       })
       .catch(error => {
         console.log(error);
@@ -49,17 +49,18 @@ export class AuthService {
 
   async createUserWithEmailAndPassword(credentials: EmailPasswordCredentials) {
     const result = await this.afAuth.auth.createUserWithEmailAndPassword(credentials.email, credentials.password);
-    await this.updateUserData(result.user);
-    await this.addDefaultAccessDoc(result.user.uid);
+    await this.updateUserDoc(result.user);
+    await this.addDefaultAccessDoc(result.user);
     return this.router.navigate(['/my-profile']);
   }
 
   async signInWithGoogle() {
     const provider = new auth.GoogleAuthProvider();
     const credential = await this.afAuth.auth.signInWithPopup(provider);
-    this.updateUserData(credential.user);
+    this.updateUserDoc(credential.user);
     if (credential.additionalUserInfo.isNewUser) {
-      this.addDefaultAccessDoc(credential.user.uid);
+      // When is new user, create default access doc
+      this.addDefaultAccessDoc(credential.user);
     }
     return this.router.navigate(['/my-profile']);
   }
@@ -69,22 +70,13 @@ export class AuthService {
     return this.router.navigate(['/login']);
   }
 
-  private updateUserData({ uid, email, displayName, photoURL }: User) {
-    // Sets user data to firestore on login
-    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${uid}`);
-
-    const data = {
-      uid,
-      email,
-      displayName,
-      photoURL
-    };
-
-    return userRef.set(data, { merge: true });
+  async updateUserDoc({ uid, email, displayName, photoURL }: User) {
+    const callable = await this.fns.httpsCallable('updateUserDoc');
+    await callable({ uid, email, displayName, photoURL });
   }
 
-  async addDefaultAccessDoc(uid) {
+  async addDefaultAccessDoc({ uid }: User) {
     const callable = await this.fns.httpsCallable('addDefaultAccessDoc');
-    callable({ uid });
+    await callable({ uid });
   }
 }
