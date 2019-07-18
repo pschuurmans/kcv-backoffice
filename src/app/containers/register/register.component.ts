@@ -3,11 +3,11 @@ import { AuthService } from 'src/app/core/auth/auth.service';
 import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class RegisterComponent implements OnInit {
   credentials = new FormGroup({
     email: new FormControl(''),
     password: new FormControl(''),
@@ -18,12 +18,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  onLogin() {
-    this.auth.signInWithEmailAndPassword(this.credentials.value);
-  }
-
-  onLoginWithGoogle() {
-    this.auth.signInWithGoogle();
+  onRegister() {
+    this.auth.createUserWithEmailAndPassword(this.credentials.value);
   }
 
 }

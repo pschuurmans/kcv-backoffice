@@ -5,40 +5,43 @@
                 <div class="column is-5-tablet is-4-desktop is-4-widescreen">
                     <div class="card">
                         <div class="card-content login">
-                            <!-- <p class="title">
+                            <p class="title">
                                 Already an account?
                             </p>
                             <p class="subtitle">
                                 Sign in to continue.
                             </p>
-                            <div class="field">
-                                <label class="label">Email</label>
-                                <div class="control">
-                                    <input class="input" formControlName="email" type="text">
+                            <form [formGroup]="credentials" (ngSubmit)="onLogin()">
+                                <div class="field">
+                                    <label class="label">Email</label>
+                                    <div class="control">
+                                        <input class="input" formControlName="email" type="text">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="field">
-                                <label class="label">Password</label>
-                                <div class="control">
-                                    <input class="input" formControlName="password" type="password">
+
+                                <div class="field">
+                                    <label class="label">Password</label>
+                                    <div class="control">
+                                        <input class="input" formControlName="password" type="password">
+                                    </div>
                                 </div>
-                            </div>
-                            <a class="button is-primary" (click)="tryLogin(loginForm.value)">Login</a>
-                            <h6 class="subtitle is-6 has-text-centered">or</h6> -->
-                            <p class="title">
-                                Login
-                            </p>
+                                <button class="button is-primary is-fullwidth" type="submit">Submit</button>
+                            </form>
+                            <br />
+                            <h6 class="subtitle is-6 has-text-centered">or</h6>
                             <div class="has-text-centered">
-                                <a class="button is-info" (click)="auth.googleSignin()">Google</a>
+                                <a class="button is-info" (click)="onLoginWithGoogle()">Login with Google</a>
                             </div>
                         </div>
-                        <!-- <footer class="card-footer">
+                        <footer class="card-footer">
                             <p class="card-footer-item register">
                                 <span>
-                                    <a class="button is-white" href="#">Register</a>
+                                    <a class="button is-white" routerLink="/register">
+                                        Register
+                                    </a>
                                 </span>
                             </p>
-                        </footer> -->
+                        </footer>
                     </div>
                 </div>
             </div>

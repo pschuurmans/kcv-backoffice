@@ -4,45 +4,25 @@ import { User } from './user';
 const admin = require('firebase-admin');
 admin.initializeApp();
 
-exports.addUser = functions.https.onCall((data, context) => {
-    console.log(data);
-    createUser(data);
+exports.updateUserDoc = functions.https.onCall((data: User, context) => {
+    const doc = {
+        displayName: data.displayName,
+        email: data.email,
+        photoURL: data.photoURL,
+        uid: data.uid
+    }
+
+    admin.firestore().collection('users').doc(data.uid).set(doc);
 });
 
-function createUser(user: User) {
-    const data = {
-        displayName: user.displayName,
-        email: user.email,
-        photoURL: user.photoURL,
-        uid: user.uid
-    };
+exports.addDefaultAccessDoc = functions.https.onCall((data: User, context) => {
+    const doc = {
+        roles: ['GUEST']
+    }
 
-    return admin.firestore().collection('users').doc(user.uid).set(data);
-}
+    admin.firestore().collection('access').doc(data.uid).set(doc);
+});
 
-// function createDefaultAccess(user: User) {
-//     const data = {
-//         displayName: user.displayName,
-//         email: user.email,
-//         photoURL: user.photoURL,
-//         uid: user.uid
-//     };
-
-//     return admin.firestore().collection('access').doc(user.uid).set(data);
-// }
-
-// function createDefaultAccess(user: User) {
-//     const data = {
-//         roles: []
-//     };
-
-//     return admin.firestore().collection('access').doc(user.uid).set(data);
-// }
-
-// exports.createUserProfile = functions.auth.user().onCreate((user) => {
-//     createUserDoc(user);
-//     createDefaultAccessDoc(user.uid);
-// });
 
 // const nodemailer = require("nodemailer");
 
