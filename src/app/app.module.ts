@@ -70,10 +70,10 @@ export class SentryErrorHandler implements ErrorHandler {
     AuthService,
     AuthGuard,
     { provide: FUNCTIONS_REGION, useValue: 'us-central1' },
-    // { provide: FUNCTIONS_ORIGIN, useValue: 'https://dev-kcv-backoffice.web.app' }
-    { provide: FUNCTIONS_ORIGIN, useValue: 'http://localhost:5000' },
+    { provide: FUNCTIONS_ORIGIN, useValue: 'https://dev-kcv-backoffice.web.app' },
+    // { provide: FUNCTIONS_ORIGIN, useValue: 'http://localhost:5000' },
     { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 } },
-    { provide: ErrorHandler, useClass: SentryErrorHandler }
+    // { provide: ErrorHandler, useClass: SentryErrorHandler }
   ],
   bootstrap: [AppComponent]
 })
