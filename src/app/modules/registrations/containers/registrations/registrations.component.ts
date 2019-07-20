@@ -10,11 +10,10 @@ import { AngularFirestore } from '@angular/fire/firestore';
 export class RegistrationsComponent implements OnInit {
   docs: Observable<any[]>;
 
-  constructor(db: AngularFirestore) {
-    this.docs = db.collection('registrations').valueChanges();
-  }
+  constructor(private db: AngularFirestore) { }
 
   ngOnInit() {
+    this.docs = this.db.collection('registrations').valueChanges();
   }
 
 }
