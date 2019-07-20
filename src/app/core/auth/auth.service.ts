@@ -48,10 +48,14 @@ export class AuthService {
   }
 
   async createUserWithEmailAndPassword(credentials: EmailPasswordCredentials) {
-    const result = await this.afAuth.auth.createUserWithEmailAndPassword(credentials.email, credentials.password);
-    await this.updateUserDoc(result.user);
-    await this.addDefaultAccessDoc(result.user);
-    return this.router.navigate(['/my-profile']);
+    await this.afAuth.auth.createUserWithEmailAndPassword(credentials.email, credentials.password)
+      .then(data => {
+        this.updateUserDoc(data.user);
+        this.addDefaultAccessDoc(data.user);
+      })
+      .then(() => {
+        return this.router.navigate(['/my-profile']);
+      });
   }
 
   async signInWithGoogle() {
