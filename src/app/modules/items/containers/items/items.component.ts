@@ -11,11 +11,10 @@ import { Observable } from 'rxjs';
 export class ItemsComponent implements OnInit {
   items: Observable<any[]>;
 
-  constructor(db: AngularFirestore) {
-    this.items = db.collection('items').valueChanges();
-  }
+  constructor(private db: AngularFirestore) { }
 
   ngOnInit() {
+    // this.items = this.db.collection('items').valueChanges();
   }
 
 }
