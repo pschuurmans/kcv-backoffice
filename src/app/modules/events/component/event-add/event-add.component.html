@@ -1,0 +1,30 @@
+<h2 class="subtitle">Toevoegen</h2>
+
+<form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+  <div class="field">
+    <label class="label">Naam *</label>
+    <div class="control">
+      <input class="input" type="text" formControlName="name" required>
+    </div>
+  </div>
+  <div class="field">
+    <label class="label">Jaar *</label>
+    <div class="control">
+      <input class="input" type="text" formControlName="year" required>
+    </div>
+  </div>
+  <div class="field">
+    <label class="label">Beschrijving</label>
+    <div class="control">
+      <input class="input" type="text" formControlName="description">
+    </div>
+  </div>
+  <div class="field">
+    <label class="label">Tag</label>
+    <div class="control">
+      <input class="input" type="text" formControlName="tag">
+    </div>
+  </div>
+  <p><i>* verplicht veld</i></p>
+  <button type="submit" class="button is-primary" [disabled]="!eventForm.valid">Submit</button>
+</form>

@@ -1,0 +1,21 @@
+<h2 class="subtitle">Overzicht</h2>
+<table class="table">
+  <tr>
+    <th>Naam</th>
+    <th>Jaar</th>
+    <th>Beschrijving</th>
+    <th>Tag</th>
+    <th>Actie</th>
+  </tr>
+  <tr *ngFor="let doc of docs | async">
+    <td>{{ doc.name }}</td>
+    <td>{{ doc.year }}</td>
+    <td>{{ doc.description }}</td>
+    <td>{{ doc.tag }}</td>
+    <td>
+      <button class="button is-white" (click)="deleteDoc(doc.id)">
+        <i class="fas fa-trash"></i>
+      </button>
+    </td>
+  </tr>
+</table>

@@ -12,6 +12,7 @@ import { RegisterComponent } from './containers/register/register.component';
 import { LoginGuard } from './core/auth/login.guard';
 import { AccessGuard } from './core/auth/access.guard';
 import { NoAccessComponent } from './containers/no-access/no-access.component';
+import { EventsComponent } from './modules/events/containers/events/events.component';
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'items', component: ItemsComponent, canActivate: [AuthGuard, AccessGuard] },
   { path: 'registrations', component: RegistrationsComponent, canActivate: [AuthGuard, AccessGuard] },
+  { path: 'events', component: EventsComponent, canActivate: [AuthGuard, AccessGuard] },
   { path: 'my-profile', component: MyProfileComponent, canActivate: [AuthGuard] },
 
   { path: 'no-access', component: NoAccessComponent },
