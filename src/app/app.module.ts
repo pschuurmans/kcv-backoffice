@@ -60,7 +60,6 @@ export class SentryErrorHandler implements ErrorHandler {
   ],
   imports: [
     BrowserModule,
-    FontAwesomeModule,
     AngularFireModule.initializeApp(environment.firebase), // imports firebase/app needed for everything
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
