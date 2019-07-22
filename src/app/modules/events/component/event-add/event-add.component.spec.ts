@@ -3,8 +3,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { EventAddComponent } from './event-add.component';
 
 describe('EventAddComponent', () => {
-  let component: EventAddComponent;
-  let fixture: ComponentFixture<EventAddComponent>;
+  // let component: EventAddComponent;
+  // let fixture: ComponentFixture<EventAddComponent>;
 
   // beforeEach(async(() => {
   //   TestBed.configureTestingModule({
