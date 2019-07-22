@@ -1,27 +1,50 @@
-import * as functions from 'firebase-functions';
-import { User } from './user';
+'use strict';
+/** EXPORT ALL FUNCTIONS
+ *
+ *   Loads all `.f.js` files
+ *   Exports a cloud function matching the file name
+ *   Author: David King
+ *   Edited: Tarik Huber
+ *   Based on this thread:
+ *     https://github.com/firebase/functions-samples/issues/170
+ *   Article:
+ *     https://codeburst.io/organizing-your-firebase-cloud-functions-67dc17b3b0da
+ */
+const glob = require("glob");
+const camelCase = require("camelcase");
+const files = glob.sync('./**/*.f.js', { cwd: __dirname, ignore: './node_modules/**'});
+for(let f=0,fl=files.length; f<fl; f++){
+  const file = files[f];
+  const functionName = camelCase(file.slice(0, -5).split('/').join('_')); // Strip off '.f.js'
+  if (!process.env.FUNCTION_NAME || process.env.FUNCTION_NAME === functionName) {
+    exports[functionName] = require(file);
+  }
+}
 
-const admin = require('firebase-admin');
-admin.initializeApp();
+// import * as functions from 'firebase-functions';
+// import { User } from './user';
 
-exports.updateUserDoc = functions.https.onCall((data: User, context) => {
-    const doc = {
-        displayName: data.displayName,
-        email: data.email,
-        photoURL: data.photoURL,
-        uid: data.uid
-    }
+// const admin = require('firebase-admin');
+// admin.initializeApp();
 
-    admin.firestore().collection('users').doc(data.uid).set(doc);
-});
+// exports.updateUserDoc = functions.https.onCall((data: User, context) => {
+//     const doc = {
+//         displayName: data.displayName,
+//         email: data.email,
+//         photoURL: data.photoURL,
+//         uid: data.uid
+//     }
 
-exports.addDefaultAccessDoc = functions.https.onCall((data: User, context) => {
-    const doc = {
-        roles: ['GUEST']
-    }
+//     admin.firestore().collection('users').doc(data.uid).set(doc);
+// });
 
-    admin.firestore().collection('access').doc(data.uid).set(doc);
-});
+// exports.addDefaultAccessDoc = functions.https.onCall((data: User, context) => {
+//     const doc = {
+//         roles: ['GUEST']
+//     }
+
+//     admin.firestore().collection('access').doc(data.uid).set(doc);
+// });
 
 
 // const nodemailer = require("nodemailer");
