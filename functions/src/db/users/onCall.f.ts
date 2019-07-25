@@ -12,5 +12,6 @@ exports = module.exports = functions.https.onCall((data: User, context: any) => 
         uid: data.uid
     }
 
+    console.log('Create doc with id ' + data.uid);
     admin.firestore().collection('users').doc(data.uid).set(doc);
 });

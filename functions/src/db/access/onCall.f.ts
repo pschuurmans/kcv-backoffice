@@ -8,5 +8,6 @@ exports = module.exports = functions.https.onCall((data: User, context: any) => 
         roles: ['GUEST']
     }
 
+    console.log('Create doc with id ' + data.uid);
     admin.firestore().collection('access').doc(data.uid).set(doc);
 });
