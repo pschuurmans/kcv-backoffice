@@ -75,12 +75,12 @@ export class AuthService {
   }
 
   async updateUserDoc({ uid, email, displayName, photoURL }: User) {
-    const callable = await this.fns.httpsCallable('updateUserDoc');
+    const callable = await this.fns.httpsCallable('dbUsersOnCall');
     await callable({ uid, email, displayName, photoURL });
   }
 
   async addDefaultAccessDoc({ uid }: User) {
-    const callable = await this.fns.httpsCallable('addDefaultAccessDoc');
+    const callable = await this.fns.httpsCallable('dbAccessOnCall');
     await callable({ uid });
   }
 }
