@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from 'src/app/core/auth/auth.service';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +7,19 @@ import { AuthService } from 'src/app/core/auth/auth.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  isAuthenticated = false;
 
-  constructor(public auth: AuthService) {}
+  constructor(private afAuth: AngularFireAuth) { }
+
+  ngOnInit() {
+    this.afAuth.authState.subscribe(
+      data => {
+        if (data === null) {
+          this.isAuthenticated = false;
+        } else {
+          this.isAuthenticated = true;
+        }
+      }
+    );
+  }
 }
