@@ -1,5 +1,5 @@
-<div *ngIf="auth.user$ | async" class="nav-margin">
-  <nav class="navbar is-light" role="navigation" aria-label="main navigation" *ngIf="auth.user$!==null">
+<div class="nav-margin">
+  <nav class="navbar is-light" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <a class="navbar-item">
         <img src="../assets/logo.png" width="112" height="28">
@@ -15,18 +15,18 @@
 
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-start">
-          <a class="navbar-item" routerLink="/">
-            Home
-          </a>
-          <a class="navbar-item" routerLink="/items">
-            Items
-          </a>
-          <a class="navbar-item" routerLink="/registrations">
-            Registraties
-          </a>
-          <a class="navbar-item" routerLink="/events">
-            Evenementen
-          </a>
+        <a class="navbar-item" routerLink="/">
+          Home
+        </a>
+        <a class="navbar-item" routerLink="/items" *ngIf="roles.includes('ADMIN')">
+          Items
+        </a>
+        <a class="navbar-item" routerLink="/registrations" *ngIf="roles.includes('ADMIN')">
+          Registraties
+        </a>
+        <a class="navbar-item" routerLink="/events" *ngIf="roles.includes('ADMIN')">
+          Evenementen
+        </a>
       </div>
 
       <div class="navbar-end">
