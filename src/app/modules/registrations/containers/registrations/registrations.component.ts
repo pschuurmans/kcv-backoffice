@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Event } from '../../../../models/event';
 
 @Component({
   selector: 'app-registrations',
@@ -8,12 +8,16 @@ import { AngularFirestore } from '@angular/fire/firestore';
   styleUrls: ['./registrations.component.scss']
 })
 export class RegistrationsComponent implements OnInit {
-  docs: Observable<any[]>;
+  docs: Event[] = [];
 
   constructor(private db: AngularFirestore) { }
 
   ngOnInit() {
-    this.docs = this.db.collection('registrations').valueChanges();
+    this.db.collection('events').valueChanges()
+      .subscribe(
+        (data: Event[]) => this.docs = data,
+        err => console.log(err)
+      );
   }
 
 }

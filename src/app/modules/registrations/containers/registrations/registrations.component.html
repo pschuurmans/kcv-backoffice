@@ -1,5 +1,15 @@
-<ul>
-  <li *ngFor="let doc of docs | async">
-    {{ doc.name }}
-  </li>
-</ul>
+<section class="section">
+  <div class="container">
+    <p class="title">Registraties</p>
+    <p class="subtitle">
+      Selecteer evenement
+    </p>
+    <div class="columns">
+      <div class="column" *ngFor="let doc of docs">
+        <a class="button is-light is-medium is-fullwidth" routerLink="{{ doc.tag }}">
+          {{ doc.name }} {{ doc.year }}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -28,6 +28,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EventsComponent } from './modules/events/containers/events/events.component';
 import { EventListComponent } from './modules/events/component/event-list/event-list.component';
 import { EventAddComponent } from './modules/events/component/event-add/event-add.component';
+import { RegistrationsListComponent } from './modules/registrations/components/registrations-list/registrations-list.component';
 
 Sentry.init({
   dsn: 'https://64b2fcd301c94ccbb47204888d3071f0@sentry.io/1503763'
@@ -57,6 +58,7 @@ export class SentryErrorHandler implements ErrorHandler {
     EventsComponent,
     EventListComponent,
     EventAddComponent,
+    RegistrationsListComponent,
   ],
   imports: [
     BrowserModule,
@@ -79,7 +81,7 @@ export class SentryErrorHandler implements ErrorHandler {
     // { provide: FUNCTIONS_ORIGIN, useValue: 'https://dev-kcv-backoffice.web.app' },
     // { provide: FUNCTIONS_ORIGIN, useValue: 'http://localhost:5000' },
     { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 } },
-    { provide: ErrorHandler, useClass: SentryErrorHandler }
+    // { provide: ErrorHandler, useClass: SentryErrorHandler }
   ],
   bootstrap: [AppComponent]
 })
