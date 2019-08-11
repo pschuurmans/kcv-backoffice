@@ -1,12 +1,14 @@
 <section class="section">
   <div class="container">
     <p class="title">Registraties van {{ this.eventId }}</p>
-    <table class="table">
+    <table class="table is-fullwidth">
       <thead>
         <th>Naam</th>
+        <th>Geregistreerd</th>
       </thead>
       <tr *ngFor="let item of items">
         <td>{{ item.first_name }} {{ item.last_name }}</td>
+        <td>{{ item.createdAt | date }}</td>
       </tr>
     </table>
   </div>
