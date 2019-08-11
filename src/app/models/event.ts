@@ -3,4 +3,5 @@ export interface Event {
     year: string;
     description: string;
     tag: string;
+    // type: ENUM!
 }

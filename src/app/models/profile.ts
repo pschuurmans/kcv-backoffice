@@ -2,8 +2,9 @@ import { KcvRole } from './kcv-role';
 import { FirstAid } from './first-aid';
 import { Vog } from './vog';
 import { KcvProtocol } from './kcv-protocol';
+import { Event } from './event';
 
-export interface Registration {
+export interface Profile {
     // NAME
     first_name: string;
     last_name: string;
@@ -31,7 +32,6 @@ export interface Registration {
     avg: boolean;
     first_aid: FirstAid;
     notes: string;
-    createdAt: Date;
 
-    event_id: number;
+    events: Event[];
 }
