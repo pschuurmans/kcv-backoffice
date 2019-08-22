@@ -36,10 +36,11 @@ export class AuthService {
     );
   }
 
-  async signInWithEmailAndPassword(credentials: EmailPasswordCredentials) {
-    await this.afAuth.auth.signInWithEmailAndPassword(credentials.email, credentials.password)
-      .then(data => {
-        this.updateUserDoc(data.user);
+  createUserWithEmailAndPassword(credentials: EmailPasswordCredentials) {
+    this.afAuth.auth.createUserWithEmailAndPassword(credentials.email, credentials.password)
+      .then(async data => {
+        this.addDefaultUserDoc(data.user);
+        this.addDefaultAccessDoc(data.user);
         return this.router.navigate(['/my-profile']);
       })
       .catch(error => {
@@ -47,23 +48,21 @@ export class AuthService {
       });
   }
 
-  async createUserWithEmailAndPassword(credentials: EmailPasswordCredentials) {
-    await this.afAuth.auth.createUserWithEmailAndPassword(credentials.email, credentials.password)
-      .then(data => {
-        this.updateUserDoc(data.user);
-        this.addDefaultAccessDoc(data.user);
-      })
+  signInWithEmailAndPassword(credentials: EmailPasswordCredentials) {
+    this.afAuth.auth.signInWithEmailAndPassword(credentials.email, credentials.password)
       .then(() => {
         return this.router.navigate(['/my-profile']);
+      })
+      .catch(error => {
+        console.log(error);
       });
   }
 
   async signInWithGoogle() {
     const provider = new auth.GoogleAuthProvider();
     const credential = await this.afAuth.auth.signInWithPopup(provider);
-    this.updateUserDoc(credential.user);
     if (credential.additionalUserInfo.isNewUser) {
-      // When is new user, create default access doc
+      this.addDefaultUserDoc(credential.user);
       this.addDefaultAccessDoc(credential.user);
     }
     return this.router.navigate(['/my-profile']);
@@ -74,7 +73,7 @@ export class AuthService {
     this.afAuth.auth.signOut();
   }
 
-  async updateUserDoc({ uid, email, displayName, photoURL }: User) {
+  async addDefaultUserDoc({ uid, email, displayName, photoURL }: User) {
     const callable = await this.fns.httpsCallable('dbUsersOnCall');
     await callable({ uid, email, displayName, photoURL });
   }
