@@ -15,17 +15,14 @@ export class HeaderComponent implements OnInit {
   constructor(public auth: AuthService, private afAuth: AngularFireAuth, private afs: AngularFirestore) { }
 
   ngOnInit() {
-    this.afAuth.user.subscribe(
-      data => {
-        if (data !== null) {
-          this.afs.doc<Access>(`access/${data.uid}`).valueChanges()
-            .subscribe(
-              doc => this.roles = doc.roles,
-              error => console.error(error)
-            );
-        }
-      }
-    );
-  }
+    const currentUser = this.afAuth.auth.currentUser;
 
+    if (currentUser !== null) {
+      this.afs.doc<Access>(`access/${currentUser.uid}`).valueChanges()
+        .subscribe(
+          doc => this.roles = doc.roles,
+          error => console.error(error)
+        );
+    }
+  }
 }
