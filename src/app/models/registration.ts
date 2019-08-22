@@ -2,6 +2,7 @@ import { KcvRole } from './kcv-role';
 import { FirstAid } from './first-aid';
 import { Vog } from './vog';
 import { KcvProtocol } from './kcv-protocol';
+import { firestore } from 'firebase';
 
 export interface Registration {
     // NAME
@@ -31,7 +32,7 @@ export interface Registration {
     avg: boolean;
     first_aid: FirstAid;
     notes: string;
-    createdAt: Date;
+    createdAt: firestore.Timestamp;
 
     event_id: number;
 }
