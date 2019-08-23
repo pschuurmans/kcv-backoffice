@@ -21,7 +21,8 @@ export class RegistrationsListComponent implements OnInit {
     this.eventId = this.route.snapshot.paramMap.get('event');
     this.afs.collection('registrations', ref => ref.where('event_id', '==', this.eventId)).valueChanges()
       .subscribe(
-        (data: Registration[]) => this.items = data
+        (data: Registration[]) => this.items = data,
+        err => console.log(err)
       );
   }
 
