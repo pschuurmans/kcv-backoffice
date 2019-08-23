@@ -1,0 +1,23 @@
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column" *ngIf="auth.user$ | async as user">
+        <h1 class="title">Account</h1>
+        <figure class="image is-64x64" *ngIf="user.photoURL!==null">
+          <img [src]="user.photoURL">
+        </figure>
+        <strong>UID: </strong>{{user.uid}}<br />
+        <strong>Name: </strong>{{user.displayName}}<br />
+        <strong>Email: </strong>{{user.email}}
+      </div>
+      <div class="column" *ngIf="access | async as access">
+        <h1 class="title">Toegangsrollen</h1>
+        <ul>
+          <li *ngFor="let role of access.roles">
+            - {{role}}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

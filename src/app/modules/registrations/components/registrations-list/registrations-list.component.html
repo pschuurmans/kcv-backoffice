@@ -1,0 +1,15 @@
+<section class="section">
+  <div class="container">
+    <p class="title">Registraties van {{ this.eventId }}</p>
+    <table class="table is-fullwidth">
+      <thead>
+        <th>Naam</th>
+        <th>Geregistreerd</th>
+      </thead>
+      <tr *ngFor="let item of items">
+        <td>{{ item.first_name }} {{ item.last_name }}</td>
+        <td>{{ item.createdAt.seconds * 1000 | date:'dd-MM-yyyy' }}</td>
+      </tr>
+    </table>
+  </div>
+</section>
