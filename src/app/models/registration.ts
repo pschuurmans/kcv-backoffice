@@ -32,7 +32,7 @@ export interface Registration {
     avg: boolean;
     first_aid: FirstAid;
     notes: string;
-    createdAt: firestore.Timestamp;
+    created_at: firestore.Timestamp;
 
     event_id: number;
 }
