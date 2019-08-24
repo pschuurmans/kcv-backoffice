@@ -29,6 +29,7 @@ import { EventsComponent } from './modules/events/containers/events/events.compo
 import { EventListComponent } from './modules/events/component/event-list/event-list.component';
 import { EventAddComponent } from './modules/events/component/event-add/event-add.component';
 import { RegistrationsListComponent } from './modules/registrations/components/registrations-list/registrations-list.component';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 Sentry.init({
   dsn: 'https://64b2fcd301c94ccbb47204888d3071f0@sentry.io/1503763'
@@ -61,6 +62,7 @@ export class SentryErrorHandler implements ErrorHandler {
     RegistrationsListComponent,
   ],
   imports: [
+    NgxDatatableModule,
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase), // imports firebase/app needed for everything
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features

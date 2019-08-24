@@ -1,6 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+// Import Bulma stylesheets
 @import "../node_modules/bulma/css/bulma.min.css";
 @import "../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
+
+// Import ngx-datatable stylesheets
+@import '~@swimlane/ngx-datatable/release/index.css';
+@import '~@swimlane/ngx-datatable/release/themes/material.css';
+@import '~@swimlane/ngx-datatable/release/assets/icons.css';
 
 .nav-margin {
     margin-bottom: 25px;
