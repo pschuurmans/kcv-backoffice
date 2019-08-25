@@ -31,6 +31,8 @@
     "bulma": "^0.7.5",
     "firebase": "^6.2.0",
     "firebase-functions": "^3.0.1",
+    "highlight.js": "^9.15.10",
+    "ngx-highlightjs": "^3.0.3",
     "rxjs": "~6.4.0",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"
