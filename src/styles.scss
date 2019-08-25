@@ -7,6 +7,12 @@
 @import '~@swimlane/ngx-datatable/release/themes/material.css';
 @import '~@swimlane/ngx-datatable/release/assets/icons.css';
 
+// Bulma extensions stylesheets
+@import 'styles/bulma-divider.min.css';
+@import 'styles/bulma-tooltip.min.css';
+
+// highlight.js theme
+@import '~highlight.js/styles/monokai.css';
 .nav-margin {
     margin-bottom: 25px;
 }
