@@ -8,6 +8,9 @@
             <figure class="image is-64x64" *ngIf="user.photoURL!==null">
               <img class="is-rounded" [src]="user.photoURL">
             </figure>
+            <figure class="image is-64x64" *ngIf="user.photoURL===null">
+              <img class="is-rounded" src="../assets/user.png" routerLink="/">
+            </figure>
           </div>
           <div class="media-content">
             <p class="title is-4">{{ user.displayName }}</p>
