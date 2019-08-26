@@ -6,7 +6,7 @@
           <div class="card">
             <div class="card-content login">
               <p class="title">
-                Create an account
+                Registreren
               </p>
               <form [formGroup]="credentials" (ngSubmit)="onRegister()">
                 <div class="field">
@@ -17,12 +17,12 @@
                 </div>
 
                 <div class="field">
-                  <label class="label">Password</label>
+                  <label class="label">Wachtwoord</label>
                   <div class="control">
                     <input class="input" formControlName="password" type="password">
                   </div>
                 </div>
-                <button class="button is-primary is-fullwidth" type="submit">Submit</button>
+                <button class="button is-link is-fullwidth" type="submit">Submit</button>
               </form>
             </div>
           </div>

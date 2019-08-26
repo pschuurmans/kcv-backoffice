@@ -13,6 +13,7 @@ import { Observable } from 'rxjs';
 export class MyProfileComponent implements OnInit {
   // access: Observable<Access>;
   access: any;
+  roles: string[] = [];
 
   constructor(
     public auth: AuthService,
@@ -25,6 +26,10 @@ export class MyProfileComponent implements OnInit {
   }
 
   getAccess() {
-    this.access = this.afs.doc<Access>(`access/${this.afAuth.auth.currentUser.uid}`).valueChanges();
+    this.afs.doc<Access>(`access/${this.afAuth.auth.currentUser.uid}`).valueChanges()
+      .subscribe(
+        data => this.roles = data.roles,
+        err => console.log(err)
+      );
   }
 }
