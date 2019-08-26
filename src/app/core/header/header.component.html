@@ -2,7 +2,7 @@
   <nav class="navbar is-info" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <a class="navbar-item">
-        <img src="../assets/kcv-logo-white.min.svg">
+        <img src="../assets/kcv-logo-white.min.svg" routerLink="/">
       </a>
 
       <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
@@ -38,7 +38,7 @@
               </span>
               <span>Mijn profiel</span>
             </a>
-            <a class="button is-link" (click)="auth.signOut()">
+            <a class="button is-info" (click)="auth.signOut()">
               <span>Uitloggen</span>
               <span class="icon">
                 <i class="fas fa-sign-out-alt"></i>
