@@ -39,8 +39,24 @@ export class AuthService {
   createUserWithEmailAndPassword(credentials: EmailPasswordCredentials) {
     this.afAuth.auth.createUserWithEmailAndPassword(credentials.email, credentials.password)
       .then(async data => {
-        this.addDefaultUserDoc(data.user);
-        this.addDefaultAccessDoc(data.user);
+        // await this.addDefaultUserDoc(data.user);
+        // await this.addDefaultAccessDoc(data.user);
+        // return this.router.navigate(['/my-profile']);
+
+        const dbUsersOnCall = this.fns.httpsCallable('dbUsersOnCall')({
+          uid: data.user.uid,
+          email: data.user.email,
+          displayName: data.user.displayName,
+          photoURL: data.user.photoURL
+        });
+        await dbUsersOnCall.toPromise();
+        const dbAccessOnCall = this.fns.httpsCallable('dbAccessOnCall')({
+          uid: data.user.uid,
+          email: data.user.email,
+          displayName: data.user.displayName,
+          photoURL: data.user.photoURL
+        });
+        await dbAccessOnCall.toPromise();
         return this.router.navigate(['/my-profile']);
       })
       .catch(error => {
@@ -60,12 +76,29 @@ export class AuthService {
 
   async signInWithGoogle() {
     const provider = new auth.GoogleAuthProvider();
-    const credential = await this.afAuth.auth.signInWithPopup(provider);
-    if (credential.additionalUserInfo.isNewUser) {
-      this.addDefaultUserDoc(credential.user);
-      this.addDefaultAccessDoc(credential.user);
-    }
-    return this.router.navigate(['/my-profile']);
+    this.afAuth.auth.signInWithPopup(provider)
+      .then(async data => {
+        if (data.additionalUserInfo.isNewUser) {
+          // this.addDefaultUserDoc(data.user);
+          // this.addDefaultAccessDoc(data.user);
+
+          const dbUsersOnCall = this.fns.httpsCallable('dbUsersOnCall')({
+            uid: data.user.uid,
+            email: data.user.email,
+            displayName: data.user.displayName,
+            photoURL: data.user.photoURL
+          });
+          await dbUsersOnCall.toPromise();
+          const dbAccessOnCall = this.fns.httpsCallable('dbAccessOnCall')({
+            uid: data.user.uid,
+            email: data.user.email,
+            displayName: data.user.displayName,
+            photoURL: data.user.photoURL
+          });
+          await dbAccessOnCall.toPromise();
+        }
+        return this.router.navigate(['/my-profile']);
+      });
   }
 
   async signOut() {
@@ -73,13 +106,13 @@ export class AuthService {
     this.afAuth.auth.signOut();
   }
 
-  async addDefaultUserDoc({ uid, email, displayName, photoURL }: User) {
-    const callable = await this.fns.httpsCallable('dbUsersOnCall');
-    await callable({ uid, email, displayName, photoURL });
-  }
+  // async addDefaultUserDoc({ uid, email, displayName, photoURL }: User) {
+  //   const callable = await this.fns.httpsCallable('dbUsersOnCall');
+  //   await callable({ uid, email, displayName, photoURL });
+  // }
 
-  async addDefaultAccessDoc({ uid, email, displayName, photoURL }: User) {
-    const callable = await this.fns.httpsCallable('dbAccessOnCall');
-    await callable({ uid, email, displayName, photoURL });
-  }
+  // async addDefaultAccessDoc({ uid, email, displayName, photoURL }: User) {
+  //   const callable = await this.fns.httpsCallable('dbAccessOnCall');
+  //   await callable({ uid, email, displayName, photoURL });
+  // }
 }
