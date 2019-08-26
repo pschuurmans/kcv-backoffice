@@ -6,8 +6,8 @@
         <figure class="image is-64x64" *ngIf="user.photoURL!==null">
           <img [src]="user.photoURL">
         </figure>
-        <strong>UID: </strong>{{user.uid}}<br />
-        <strong>Name: </strong>{{user.displayName}}<br />
+        <strong>User ID: </strong>{{user.uid}}<br />
+        <strong>Naam: </strong>{{user.displayName}}<br />
         <strong>Email: </strong>{{user.email}}
       </div>
       <div class="column" *ngIf="access | async as access">

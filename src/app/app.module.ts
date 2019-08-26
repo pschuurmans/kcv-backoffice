@@ -29,6 +29,20 @@ import { EventsComponent } from './modules/events/containers/events/events.compo
 import { EventListComponent } from './modules/events/component/event-list/event-list.component';
 import { EventAddComponent } from './modules/events/component/event-add/event-add.component';
 import { RegistrationsListComponent } from './modules/registrations/components/registrations-list/registrations-list.component';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { HighlightModule } from 'ngx-highlightjs';
+import javascript from 'highlight.js/lib/languages/javascript';
+import { EventScriptComponent } from './modules/events/component/event-script/event-script.component';
+
+/**
+ * Import every language you wish to highlight here
+ * NOTE: The name of each language must match the file name its imported from
+ */
+export function hljsLanguages() {
+  return [
+    {name: 'javascript', func: javascript},
+  ];
+}
 
 Sentry.init({
   dsn: 'https://64b2fcd301c94ccbb47204888d3071f0@sentry.io/1503763'
@@ -59,8 +73,10 @@ export class SentryErrorHandler implements ErrorHandler {
     EventListComponent,
     EventAddComponent,
     RegistrationsListComponent,
+    EventScriptComponent,
   ],
   imports: [
+    NgxDatatableModule,
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase), // imports firebase/app needed for everything
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
@@ -73,6 +89,9 @@ export class SentryErrorHandler implements ErrorHandler {
     MatSnackBarModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    HighlightModule.forRoot({
+      languages: hljsLanguages
+    })
   ],
   providers: [
     AuthService,

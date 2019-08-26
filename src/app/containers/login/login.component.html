@@ -6,10 +6,10 @@
                     <div class="card">
                         <div class="card-content login">
                             <p class="title">
-                                Already an account?
+                                Al een account?
                             </p>
                             <p class="subtitle">
-                                Sign in to continue.
+                                Log in om door te gaan
                             </p>
                             <form [formGroup]="credentials" (ngSubmit)="onLogin()">
                                 <div class="field">
@@ -20,24 +20,28 @@
                                 </div>
 
                                 <div class="field">
-                                    <label class="label">Password</label>
+                                    <label class="label">Wachtwoord</label>
                                     <div class="control">
                                         <input class="input" formControlName="password" type="password">
                                     </div>
                                 </div>
-                                <button class="button is-primary is-fullwidth" type="submit">Submit</button>
+                                <button class="button is-link is-fullwidth" type="submit">Inloggen</button>
                             </form>
-                            <br />
-                            <h6 class="subtitle is-6 has-text-centered">or</h6>
+                            <div class="is-divider" data-content="OF"></div>
                             <div class="has-text-centered">
-                                <a class="button is-info" (click)="onLoginWithGoogle()">Login with Google</a>
+                                <a class="button is-info">
+                                    <span class="icon">
+                                        <i class="fab fa-google"></i>
+                                    </span>
+                                    <span>Google</span>
+                                </a>
                             </div>
                         </div>
                         <footer class="card-footer">
                             <p class="card-footer-item register">
                                 <span>
                                     <a class="button is-white" routerLink="/register">
-                                        Register
+                                        Registreer een account
                                     </a>
                                 </span>
                             </p>

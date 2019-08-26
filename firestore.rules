@@ -37,6 +37,10 @@ service cloud.firestore {
       allow write;
       allow read, write: if isAdmin();
     }
+    
+    match /keys/{doc} {
+      allow read, write: if isAdmin();
+    }
 
     function isSignedIn() {
       return request.auth != null;
