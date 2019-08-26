@@ -33,6 +33,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { HighlightModule } from 'ngx-highlightjs';
 import javascript from 'highlight.js/lib/languages/javascript';
 import { EventScriptComponent } from './modules/events/component/event-script/event-script.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 /**
  * Import every language you wish to highlight here
@@ -91,7 +92,8 @@ export class SentryErrorHandler implements ErrorHandler {
     ReactiveFormsModule,
     HighlightModule.forRoot({
       languages: hljsLanguages
-    })
+    }),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     AuthService,
