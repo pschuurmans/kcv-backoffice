@@ -10,11 +10,11 @@
         <strong>Naam: </strong>{{user.displayName}}<br />
         <strong>Email: </strong>{{user.email}}
       </div>
-      <div class="column" *ngIf="access | async as access">
+      <div class="column">
         <h1 class="title">Toegangsrollen</h1>
         <ul>
-          <li *ngFor="let role of access.roles">
-            - {{role}}
+          <li *ngFor="let role of roles">
+            - {{ role }}
           </li>
         </ul>
       </div>
