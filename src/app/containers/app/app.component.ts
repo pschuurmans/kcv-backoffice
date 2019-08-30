@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -7,19 +9,14 @@ import { AngularFireAuth } from '@angular/fire/auth';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  isAuthenticated = false;
+  auth$: Observable<boolean>;
 
-  constructor(private afAuth: AngularFireAuth) { }
+  constructor(
+    store: Store<{ auth: boolean }>
+  ) {
+    this.auth$ = store.pipe(select('auth'));
+  }
 
   ngOnInit() {
-    this.afAuth.authState.subscribe(
-      data => {
-        if (data === null) {
-          this.isAuthenticated = false;
-        } else {
-          this.isAuthenticated = true;
-        }
-      }
-    );
   }
 }
