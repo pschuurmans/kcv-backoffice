@@ -34,6 +34,8 @@ import { HighlightModule } from 'ngx-highlightjs';
 import javascript from 'highlight.js/lib/languages/javascript';
 import { EventScriptComponent } from './modules/events/component/event-script/event-script.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { StoreModule } from '@ngrx/store';
+import { authReducer } from './store/reducers/auth.reducer';
 
 /**
  * Import every language you wish to highlight here
@@ -93,7 +95,8 @@ export class SentryErrorHandler implements ErrorHandler {
     HighlightModule.forRoot({
       languages: hljsLanguages
     }),
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    StoreModule.forRoot({ auth: authReducer })
   ],
   providers: [
     AuthService,
