@@ -9,8 +9,6 @@ import { NotFoundComponent } from './containers/not-found/not-found.component';
 import { MyProfileComponent } from './modules/my-profile/containers/my-profile/my-profile.component';
 import { RegistrationsComponent } from './modules/registrations/containers/registrations/registrations.component';
 import { RegisterComponent } from './containers/register/register.component';
-import { LoginGuard } from './core/auth/login.guard';
-import { AccessGuard } from './core/auth/access.guard';
 import { NoAccessComponent } from './containers/no-access/no-access.component';
 import { EventsComponent } from './modules/events/containers/events/events.component';
 import { RegistrationsListComponent } from './modules/registrations/components/registrations-list/registrations-list.component';
