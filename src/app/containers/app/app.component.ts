@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
