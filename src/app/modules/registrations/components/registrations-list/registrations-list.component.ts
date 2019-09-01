@@ -16,15 +16,15 @@ export class RegistrationsListComponent implements OnInit {
   registrations: Registration[] = [];
 
   columns = [
-    { name: 'Voornaam', prop: 'first_name'},
-    { name: 'Achternaam', prop: 'last_name'},
+    { name: 'Voornaam', prop: 'first_name' },
+    { name: 'Achternaam', prop: 'last_name' },
     { name: 'Geregistreerd', prop: 'created_at', pipe: { transform: this.timestampPipe } }
   ];
 
   timestampPipe(value: any, ...args: any[]) {
-    const seconds =  value.seconds * 1000; // Convert timestamp to date
+    const seconds = value.seconds * 1000; // Convert timestamp to date
     return new Date(seconds).toLocaleString('nl-NL');
-}
+  }
 
   constructor(
     private route: ActivatedRoute,
