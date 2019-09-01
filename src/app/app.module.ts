@@ -36,6 +36,7 @@ import { EventScriptComponent } from './modules/events/component/event-script/ev
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { StoreModule } from '@ngrx/store';
 import { authReducer } from './store/reducers/auth.reducer';
+import { PersonsComponent } from './modules/persons/containers/persons/persons.component';
 
 /**
  * Import every language you wish to highlight here
@@ -77,6 +78,7 @@ export class SentryErrorHandler implements ErrorHandler {
     EventAddComponent,
     RegistrationsListComponent,
     EventScriptComponent,
+    PersonsComponent,
   ],
   imports: [
     NgxDatatableModule,

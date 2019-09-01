@@ -13,6 +13,7 @@ import { NoAccessComponent } from './containers/no-access/no-access.component';
 import { EventsComponent } from './modules/events/containers/events/events.component';
 import { RegistrationsListComponent } from './modules/registrations/components/registrations-list/registrations-list.component';
 import { EventScriptComponent } from './modules/events/component/event-script/event-script.component';
+import { PersonsComponent } from './modules/persons/containers/persons/persons.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'events', component: EventsComponent, canActivate: [AuthGuard] },
   { path: 'events/script/:eventId', component: EventScriptComponent, canActivate: [AuthGuard] },
   { path: 'my-profile', component: MyProfileComponent, canActivate: [AuthGuard] },
+  { path: 'persons', component: PersonsComponent, canActivate: [AuthGuard] },
 
   { path: 'no-access', component: NoAccessComponent },
   { path: '404', component: NotFoundComponent },
