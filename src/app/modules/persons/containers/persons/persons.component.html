@@ -1,1 +1,8 @@
-<p>persons works!</p>
+<section class="section">
+    <div class="container is-fluid">
+        <p class="title">Personen</p>
+        <ngx-datatable class="material fullscreen" [rows]="this.persons" [columns]="this.columns"
+            [rowHeight]="rowHeight" [headerHeight]="headerHeight" [columnMode]="'force'">
+        </ngx-datatable>
+    </div>
+</section>
