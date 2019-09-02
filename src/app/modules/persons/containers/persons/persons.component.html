@@ -1,8 +1,35 @@
 <section class="section">
     <div class="container is-fluid">
-        <p class="title">Personen</p>
-        <ngx-datatable class="material fullscreen" [rows]="this.persons" [columns]="this.columns"
-            [rowHeight]="rowHeight" [headerHeight]="headerHeight" [columnMode]="'force'">
+        <div class="level">
+            <div class="level-left">
+                <p class="title">Personen</p>
+            </div>
+            <div class="level-right">
+                <a [routerLink]="['/persons/add']" class="button is-info">
+                    <span class="icon">
+                        <i class="fas fa-plus"></i>
+                    </span>
+                    <span>Toevoegen</span>
+                </a>
+            </div>
+        </div>
+        <ngx-datatable class="material fullscreen" [rows]="this.persons" [rowHeight]="rowHeight"
+            [headerHeight]="headerHeight" [columnMode]="'force'">
+            <!-- <ngx-datatable-column name="ID"></ngx-datatable-column> -->
+            <ngx-datatable-column name="Voornaam" prop="first_name"></ngx-datatable-column>
+            <ngx-datatable-column name="Achternaam" prop="last_name"></ngx-datatable-column>
+            <ngx-datatable-column name="Aangemaakt" prop="created_at">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    {{ value | timestamp }}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Acties" prop="id">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    <button class="button is-white is-small" (click)="deletePerson(value)">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </ng-template>
+            </ngx-datatable-column>
         </ngx-datatable>
     </div>
 </section>
