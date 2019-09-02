@@ -14,6 +14,7 @@ import { EventsComponent } from './modules/events/containers/events/events.compo
 import { RegistrationsListComponent } from './modules/registrations/components/registrations-list/registrations-list.component';
 import { EventScriptComponent } from './modules/events/component/event-script/event-script.component';
 import { PersonsComponent } from './modules/persons/containers/persons/persons.component';
+import { PersonAddComponent } from './modules/persons/components/person-add/person-add.component';
 
 
 const routes: Routes = [
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'events', component: EventsComponent, canActivate: [AuthGuard] },
   { path: 'events/script/:eventId', component: EventScriptComponent, canActivate: [AuthGuard] },
   { path: 'my-profile', component: MyProfileComponent, canActivate: [AuthGuard] },
+  { path: 'persons/add', component: PersonAddComponent, canActivate: [AuthGuard] },
   { path: 'persons', component: PersonsComponent, canActivate: [AuthGuard] },
 
   { path: 'no-access', component: NoAccessComponent },
