@@ -12,6 +12,8 @@ import { switchMap } from 'rxjs/operators';
 import { User } from './user';
 import { AngularFireFunctions } from '@angular/fire/functions';
 import { EmailPasswordCredentials } from './email-password-credentials';
+import { Store } from '@ngrx/store';
+import { login, logout } from 'src/app/store/actions/auth.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +26,7 @@ export class AuthService {
     private afs: AngularFirestore,
     private fns: AngularFireFunctions,
     private router: Router,
+    private store: Store<{ auth: boolean }>
   ) {
     this.user$ = this.afAuth.authState.pipe(
       switchMap(user => {
@@ -57,6 +60,7 @@ export class AuthService {
           photoURL: data.user.photoURL
         });
         await dbAccessOnCall.toPromise();
+        this.store.dispatch(login());
         return this.router.navigate(['/my-profile']);
       })
       .catch(error => {
@@ -67,6 +71,7 @@ export class AuthService {
   signInWithEmailAndPassword(credentials: EmailPasswordCredentials) {
     this.afAuth.auth.signInWithEmailAndPassword(credentials.email, credentials.password)
       .then(() => {
+        this.store.dispatch(login());
         return this.router.navigate(['/my-profile']);
       })
       .catch(error => {
@@ -97,13 +102,15 @@ export class AuthService {
           });
           await dbAccessOnCall.toPromise();
         }
+        this.store.dispatch(login());
         return this.router.navigate(['/my-profile']);
       });
   }
 
   async signOut() {
+    this.store.dispatch(logout());
     this.router.navigate(['/login']);
-    this.afAuth.auth.signOut();
+    // this.afAuth.auth.signOut();
   }
 
   // async addDefaultUserDoc({ uid, email, displayName, photoURL }: User) {

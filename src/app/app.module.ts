@@ -34,6 +34,11 @@ import { HighlightModule } from 'ngx-highlightjs';
 import javascript from 'highlight.js/lib/languages/javascript';
 import { EventScriptComponent } from './modules/events/component/event-script/event-script.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { StoreModule } from '@ngrx/store';
+import { authReducer } from './store/reducers/auth.reducer';
+import { PersonsComponent } from './modules/persons/containers/persons/persons.component';
+import { PersonAddComponent } from './modules/persons/components/person-add/person-add.component';
+import { TimestampPipe } from './core/pipes/timestamp.pipe';
 
 /**
  * Import every language you wish to highlight here
@@ -75,6 +80,9 @@ export class SentryErrorHandler implements ErrorHandler {
     EventAddComponent,
     RegistrationsListComponent,
     EventScriptComponent,
+    PersonsComponent,
+    PersonAddComponent,
+    TimestampPipe,
   ],
   imports: [
     NgxDatatableModule,
@@ -93,7 +101,8 @@ export class SentryErrorHandler implements ErrorHandler {
     HighlightModule.forRoot({
       languages: hljsLanguages
     }),
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    StoreModule.forRoot({ auth: authReducer })
   ],
   providers: [
     AuthService,

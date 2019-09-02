@@ -24,9 +24,7 @@ export class HeaderComponent implements OnInit {
       this.afs.doc<Access>(`access/${currentUser.uid}`).valueChanges()
         .subscribe(
           doc => {
-            if (doc !== undefined) {
-              this.roles = doc.roles;
-            }
+            this.roles = doc.roles;
           },
           error => console.error(error)
         );
