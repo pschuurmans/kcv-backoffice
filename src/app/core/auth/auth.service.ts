@@ -14,6 +14,7 @@ import { AngularFireFunctions } from '@angular/fire/functions';
 import { EmailPasswordCredentials } from './email-password-credentials';
 import { Store } from '@ngrx/store';
 import { login, logout } from 'src/app/store/actions/auth.actions';
+import * as firebase from 'firebase/app';
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +41,11 @@ export class AuthService {
   }
 
   createUserWithEmailAndPassword(credentials: EmailPasswordCredentials) {
+    // Existing and future Auth states are now persisted in the current
+    // session only. Closing the window would clear any existing state even if
+    // a user forgets to sign out.
+    this.afAuth.auth.setPersistence(firebase.auth.Auth.Persistence.SESSION);
+
     this.afAuth.auth.createUserWithEmailAndPassword(credentials.email, credentials.password)
       .then(async data => {
         // await this.addDefaultUserDoc(data.user);
@@ -69,6 +75,11 @@ export class AuthService {
   }
 
   signInWithEmailAndPassword(credentials: EmailPasswordCredentials) {
+    // Existing and future Auth states are now persisted in the current
+    // session only. Closing the window would clear any existing state even if
+    // a user forgets to sign out.
+    this.afAuth.auth.setPersistence(firebase.auth.Auth.Persistence.SESSION);
+
     this.afAuth.auth.signInWithEmailAndPassword(credentials.email, credentials.password)
       .then(() => {
         this.store.dispatch(login());
@@ -81,6 +92,11 @@ export class AuthService {
 
   async signInWithGoogle() {
     const provider = new auth.GoogleAuthProvider();
+    // Existing and future Auth states are now persisted in the current
+    // session only. Closing the window would clear any existing state even if
+    // a user forgets to sign out.
+    this.afAuth.auth.setPersistence(firebase.auth.Auth.Persistence.SESSION);
+
     this.afAuth.auth.signInWithPopup(provider)
       .then(async data => {
         if (data.additionalUserInfo.isNewUser) {
