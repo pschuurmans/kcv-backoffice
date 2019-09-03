@@ -40,6 +40,7 @@ import { PersonsComponent } from './modules/persons/containers/persons/persons.c
 import { PersonAddComponent } from './modules/persons/components/person-add/person-add.component';
 import { TimestampPipe } from './core/pipes/timestamp.pipe';
 import { PersonDetailsComponent } from './modules/persons/components/person-details/person-details.component';
+import { PersonEditComponent } from './modules/persons/components/person-edit/person-edit.component';
 
 /**
  * Import every language you wish to highlight here
@@ -85,6 +86,7 @@ export class SentryErrorHandler implements ErrorHandler {
     PersonAddComponent,
     TimestampPipe,
     PersonDetailsComponent,
+    PersonEditComponent
   ],
   imports: [
     NgxDatatableModule,
