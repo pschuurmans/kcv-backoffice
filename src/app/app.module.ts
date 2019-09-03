@@ -39,6 +39,7 @@ import { authReducer } from './store/reducers/auth.reducer';
 import { PersonsComponent } from './modules/persons/containers/persons/persons.component';
 import { PersonAddComponent } from './modules/persons/components/person-add/person-add.component';
 import { TimestampPipe } from './core/pipes/timestamp.pipe';
+import { PersonDetailsComponent } from './modules/persons/components/person-details/person-details.component';
 
 /**
  * Import every language you wish to highlight here
@@ -83,6 +84,7 @@ export class SentryErrorHandler implements ErrorHandler {
     PersonsComponent,
     PersonAddComponent,
     TimestampPipe,
+    PersonDetailsComponent,
   ],
   imports: [
     NgxDatatableModule,
