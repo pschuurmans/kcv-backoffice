@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
 import { Person } from 'src/app/models/person';
 import { Observable } from 'rxjs';
 
