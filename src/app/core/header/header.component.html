@@ -15,16 +15,16 @@
 
     <div id="navbarBasicExample" class="navbar-menu" #navMenu>
       <div class="navbar-start">
-        <a class="navbar-item" routerLink="/">
+        <a class="navbar-item" routerLink="/" (click)="toggleNavbar()">
           Home
         </a>
-        <a class="navbar-item" routerLink="/registrations" *ngIf="roles.includes('ADMIN')">
+        <a class="navbar-item" routerLink="/registrations" *ngIf="roles.includes('ADMIN')" (click)="toggleNavbar()">
           Registraties
         </a>
-        <a class="navbar-item" routerLink="/events" *ngIf="roles.includes('ADMIN')">
+        <a class="navbar-item" routerLink="/events" *ngIf="roles.includes('ADMIN')" (click)="toggleNavbar()">
           Evenementen
         </a>
-        <a class="navbar-item" routerLink="/persons" *ngIf="roles.includes('ADMIN')">
+        <a class="navbar-item" routerLink="/persons" *ngIf="roles.includes('ADMIN')" (click)="toggleNavbar()">
           Personen
         </a>
       </div>
@@ -32,13 +32,13 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <a class="button is-light" routerLink="my-profile">
+            <a class="button is-light" routerLink="my-profile" (click)="toggleNavbar()">
               <span class="icon">
                 <i class="fas fa-user"></i>
               </span>
               <span>Mijn profiel</span>
             </a>
-            <a class="button is-info" (click)="auth.signOut()">
+            <a class="button is-info" (click)="auth.signOut()" (click)="toggleNavbar()">
               <span>Uitloggen</span>
               <span class="icon">
                 <i class="fas fa-sign-out-alt"></i>
