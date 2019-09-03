@@ -25,9 +25,9 @@
             </ngx-datatable-column>
             <ngx-datatable-column name="Acties" prop="id">
                 <ng-template let-value="value" ngx-datatable-cell-template>
-                    <button class="button is-white is-small" (click)="deletePerson(value)">
-                        <i class="fas fa-trash"></i>
-                    </button>
+                    <a class="button is-info" (click)="showPerson(value)">Details</a>&nbsp;
+                    <a class="button is-warning" (click)="editPerson(value)">Focus</a>&nbsp;
+                    <a class="button is-danger" (click)="deletePerson(value)">Verwijder</a>
                 </ng-template>
             </ngx-datatable-column>
         </ngx-datatable>

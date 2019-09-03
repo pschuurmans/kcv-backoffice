@@ -3,6 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 import { Person } from 'src/app/models/person';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-persons',
@@ -16,7 +17,8 @@ export class PersonsComponent implements OnInit {
   persons: any = [];
 
   constructor(
-    private afs: AngularFirestore
+    private afs: AngularFirestore,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -37,6 +39,14 @@ export class PersonsComponent implements OnInit {
           });
         })
       );
+  }
+
+  showPerson(id: number) {
+    this.router.navigate(['/persons/' + id]);
+  }
+
+  editPerson(id: number) {
+    this.router.navigate(['/persons/' + id + '/edit']);
   }
 
   deletePerson(id: number) {
