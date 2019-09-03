@@ -11,6 +11,6 @@
         </div>
 
         <strong>Naam:</strong> {{ (person | async)?.first_name }} {{ (person | async)?.last_name }}<br />
-        <strong>Aangemaakt:</strong> {{ (person | async)?.created_at || '' | timestamp }}<br />
+        <strong>Voor het laatst bewerkt:</strong> {{ (person | async)?.updated_at || '' | timestamp }}<br />
     </div>
 </section>
