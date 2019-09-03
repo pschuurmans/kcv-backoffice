@@ -41,16 +41,14 @@ export class PersonsComponent implements OnInit {
       );
   }
 
+  onActivate(event) {
+    if (event.type === 'click') {
+      this.showPerson(event.row.id);
+    }
+  }
+
   showPerson(id: number) {
     this.router.navigate(['/persons/' + id]);
-  }
-
-  editPerson(id: number) {
-    this.router.navigate(['/persons/' + id + '/edit']);
-  }
-
-  deletePerson(id: number) {
-    this.afs.doc('persons/' + id).delete();
   }
 
 }

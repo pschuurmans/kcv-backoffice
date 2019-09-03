@@ -1,1 +1,11 @@
-<p>person-details works!</p>
+<section class="section">
+    <div class="container">
+        <p class="title">Persoon</p>
+
+        <strong>Naam:</strong> {{ (person | async)?.first_name }} {{ (person | async)?.last_name }}<br />
+        <strong>Aangemaakt:</strong> {{ (person | async)?.created_at || '' | timestamp }}<br />
+
+        <a class="button is-warning" (click)="editPerson()">Bewerken</a>&nbsp;
+        <a class="button is-danger" (click)="deletePerson()">Verwijder</a>
+    </div>
+</section>
