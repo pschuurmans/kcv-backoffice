@@ -26,6 +26,9 @@
       <a class="navbar-item" routerLink="/persons" *ngIf="roles.includes('ADMIN')" (click)="toggleNavbar()">
         Personen
       </a>
+      <a class="navbar-item" routerLink="/companies" *ngIf="roles.includes('ADMIN')" (click)="toggleNavbar()">
+        Bedrijven
+      </a>
     </div>
 
     <div class="navbar-end">

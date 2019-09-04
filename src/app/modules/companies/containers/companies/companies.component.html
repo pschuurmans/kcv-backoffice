@@ -1,0 +1,22 @@
+<section class="section">
+    <div class="container">
+        <div class="level">
+            <div class="level-left">
+                <p class="title">Bedrijven</p>
+            </div>
+            <div class="level-right">
+                <a [routerLink]="['/companies/add']" class="button is-info">
+                    <span class="icon">
+                        <i class="fas fa-plus"></i>
+                    </span>
+                    <span>Toevoegen</span>
+                </a>
+            </div>
+        </div>
+        <ngx-datatable class="material fullscreen" [rows]="this.companies" [rowHeight]="rowHeight"
+            [headerHeight]="headerHeight" [columnMode]="'force'" (activate)="onActivate($event)">
+            <!-- <ngx-datatable-column name="ID"></ngx-datatable-column> -->
+            <ngx-datatable-column name="Naam" prop="name"></ngx-datatable-column>
+        </ngx-datatable>
+    </div>
+</section>

@@ -1,0 +1,16 @@
+<section class="section">
+    <div class="container">
+        <div class="level">
+            <div class="level-left">
+                <p class="title">Bedrijf</p>
+            </div>
+            <div class="level-right">
+                <a class="button is-warning" (click)="editCompany()">Bewerken</a>&nbsp;
+                <a class="button is-danger" (click)="deleteCompany()">Verwijder</a>
+            </div>
+        </div>
+
+        <strong>Naam:</strong> {{ (company | async)?.name }} <br />
+        <strong>Voor het laatst bewerkt:</strong> {{ (company | async)?.updated_at || '' | timestamp }}<br />
+    </div>
+</section>

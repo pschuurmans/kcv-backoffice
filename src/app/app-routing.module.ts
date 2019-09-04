@@ -17,6 +17,10 @@ import { PersonsComponent } from './modules/persons/containers/persons/persons.c
 import { PersonAddComponent } from './modules/persons/components/person-add/person-add.component';
 import { PersonDetailsComponent } from './modules/persons/components/person-details/person-details.component';
 import { PersonEditComponent } from './modules/persons/components/person-edit/person-edit.component';
+import { CompaniesAddComponent } from './modules/companies/components/companies-add/companies-add.component';
+import { CompaniesEditComponent } from './modules/companies/components/companies-edit/companies-edit.component';
+import { CompaniesDetailsComponent } from './modules/companies/components/companies-details/companies-details.component';
+import { CompaniesComponent } from './modules/companies/containers/companies/companies.component';
 
 
 const routes: Routes = [
@@ -34,6 +38,10 @@ const routes: Routes = [
   { path: 'persons/:personId/edit', component: PersonEditComponent, canActivate: [AuthGuard] },
   { path: 'persons/:personId', component: PersonDetailsComponent, canActivate: [AuthGuard] },
   { path: 'persons', component: PersonsComponent, canActivate: [AuthGuard] },
+  { path: 'companies/add', component: CompaniesAddComponent, canActivate: [AuthGuard] },
+  { path: 'companies/:companyId/edit', component: CompaniesEditComponent, canActivate: [AuthGuard] },
+  { path: 'companies/:companyId', component: CompaniesDetailsComponent, canActivate: [AuthGuard] },
+  { path: 'companies', component: CompaniesComponent, canActivate: [AuthGuard] },
 
   { path: 'no-access', component: NoAccessComponent },
   { path: '404', component: NotFoundComponent },
