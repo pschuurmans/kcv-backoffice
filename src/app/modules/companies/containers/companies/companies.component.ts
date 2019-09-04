@@ -1,20 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { Person } from 'src/app/models/person';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { Company } from 'src/app/models/company';
 
 @Component({
-  selector: 'app-persons',
-  templateUrl: './persons.component.html',
-  styleUrls: ['./persons.component.scss']
+  selector: 'app-companies',
+  templateUrl: './companies.component.html',
+  styleUrls: ['./companies.component.scss']
 })
-export class PersonsComponent implements OnInit {
+export class CompaniesComponent implements OnInit {
   readonly headerHeight = 50;
   readonly rowHeight = 50;
 
-  persons: any = [];
+  companies: Company[] = [];
 
   constructor(
     private afs: AngularFirestore,
@@ -22,13 +21,13 @@ export class PersonsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getPersons().subscribe(
-      data => this.persons = data
+    this.getCompanies().subscribe(
+      (data: Company[]) => this.companies = data
     );
   }
 
-  getPersons() {
-    return this.afs.collection('persons').snapshotChanges()
+  getCompanies() {
+    return this.afs.collection('companies').snapshotChanges()
       // https://github.com/angular/angularfire2/issues/1973
       .pipe(
         map(actions => {
@@ -43,12 +42,12 @@ export class PersonsComponent implements OnInit {
 
   onActivate(event) {
     if (event.type === 'click') {
-      this.showPerson(event.row.id);
+      this.showCompany(event.row.id);
     }
   }
 
-  showPerson(id: number) {
-    this.router.navigate(['/persons/' + id]);
+  showCompany(id: number) {
+    this.router.navigate(['/companies/' + id]);
   }
 
 }

@@ -1,0 +1,36 @@
+<section class="section">
+    <div class="container">
+        <div class="columns">
+            <div class="column">
+                <div class="level">
+                    <div class="level-left">
+                        <p class="title">Persoon bewerken</p>
+                    </div>
+                    <div class="level-right">
+                    </div>
+                </div>
+                <form [formGroup]="personForm" (ngSubmit)="onSubmit()">
+                    <div class="field">
+                        <label class="label">Voornaam</label>
+                        <div class="control">
+                            <input class="input" type="text" formControlName="first_name" required>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Achternaam</label>
+                        <div class="control">
+                            <input class="input" type="text" formControlName="last_name" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="button is-info">
+                        <span class="icon">
+                            <i class="fas fa-save"></i>
+                        </span>
+                        <span>Opslaan</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

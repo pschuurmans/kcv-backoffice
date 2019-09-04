@@ -32,7 +32,7 @@ export class PersonAddComponent implements OnInit {
     this.personsCollection.add({
       first_name: this.personForm.get('first_name').value,
       last_name: this.personForm.get('last_name').value,
-      created_at: firebase.firestore.FieldValue.serverTimestamp()
+      updated_at: firebase.firestore.FieldValue.serverTimestamp()
     })
       .then(
         () => this.router.navigate(['/persons'])
