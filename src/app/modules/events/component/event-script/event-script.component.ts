@@ -84,7 +84,7 @@ function createDataObject() {
   const data = getLastRow();
 
   var doc = {
-    "event": "${this.eventId}",
+    "event_id": "${this.eventId}",
   }
 
   for (var i in labels[0])
