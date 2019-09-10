@@ -2,7 +2,7 @@
   <div class="container is-fluid">
     <p class="title">Registraties van {{ this.eventId }}</p>
     <ngx-datatable class="material fullscreen" [rows]="this.registrations" [columns]="this.columns"
-      [rowHeight]="rowHeight" [headerHeight]="headerHeight" [columnMode]="'force'">
+      [rowHeight]="rowHeight" [headerHeight]="headerHeight" [columnMode]="'force'" (activate)="onActivate($event)">
     </ngx-datatable>
   </div>
 </section>

@@ -21,6 +21,7 @@ import { CompaniesAddComponent } from './modules/companies/components/companies-
 import { CompaniesEditComponent } from './modules/companies/components/companies-edit/companies-edit.component';
 import { CompaniesDetailsComponent } from './modules/companies/components/companies-details/companies-details.component';
 import { CompaniesComponent } from './modules/companies/containers/companies/companies.component';
+import { RegistrationDetailsComponent } from './modules/registrations/components/registration-details/registration-details.component';
 
 
 const routes: Routes = [
@@ -29,7 +30,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'items', component: ItemsComponent, canActivate: [AuthGuard] },
-  { path: 'registrations/:eventId', component: RegistrationsListComponent, canActivate: [AuthGuard] },
+  { path: 'registrations/event/:eventId', component: RegistrationsListComponent, canActivate: [AuthGuard] },
+  { path: 'registrations/:registrationId', component: RegistrationDetailsComponent, canActivate: [AuthGuard] },
   { path: 'registrations', component: RegistrationsComponent, canActivate: [AuthGuard] },
   { path: 'events', component: EventsComponent, canActivate: [AuthGuard] },
   { path: 'events/script/:eventId', component: EventScriptComponent, canActivate: [AuthGuard] },

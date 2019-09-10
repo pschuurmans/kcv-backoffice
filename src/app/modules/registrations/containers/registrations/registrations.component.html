@@ -6,7 +6,7 @@
     </p>
     <div class="columns">
       <div class="column" *ngFor="let doc of docs">
-        <a class="button is-light is-medium is-fullwidth" routerLink="{{ doc.tag }}">
+        <a class="button is-light is-medium is-fullwidth" routerLink="/registrations/event/{{ doc.tag }}">
           {{ doc.name }} {{ doc.year }}
         </a>
       </div>
