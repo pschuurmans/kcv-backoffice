@@ -1,32 +1,28 @@
-import { KcvRole } from './kcv-role';
-import { FirstAid } from './first-aid';
-import { Vog } from './vog';
-import { KcvProtocol } from './kcv-protocol';
 import { firestore } from 'firebase';
 
 export interface Registration {
-    id?: string;
-    first_name: string;
-    last_name: string;
-    street: string;
-    house_nr: string;
-    postal_code: string;
+    birthday: string | firestore.Timestamp;
     city: string;
+    contact_preferences: string;
     country: string;
-    mobile: string;
-    phone: string;
-    phone2: string;
     email: string;
     email2: string;
-    contact_preferences: string;
-    birthday: string | Date;
-    vog: Vog;
-    kcv_protocol: KcvProtocol;
-    kcv_role: KcvRole[];
-    avg: boolean;
-    first_aid: FirstAid;
-    notes: string;
-    timestamp: firestore.Timestamp;
-
     event_id: number;
+    first_aid: string;
+    first_name: string;
+    first_time: string;
+    house_nr: string;
+    job: string;
+    id?: string;
+    last_name: string;
+    mobile: string;
+    motivation: string;
+    notes: string;
+    participation: string;
+    phone: string;
+    phone2: string;
+    postal_code: string;
+    street: string;
+    timestamp: firestore.Timestamp;
+    track: string;
 }
