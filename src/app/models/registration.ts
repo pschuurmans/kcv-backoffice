@@ -5,26 +5,20 @@ import { KcvProtocol } from './kcv-protocol';
 import { firestore } from 'firebase';
 
 export interface Registration {
-    // NAME
+    id?: string;
     first_name: string;
     last_name: string;
-
-    // ADDRESS
     street: string;
     house_nr: string;
     postal_code: string;
     city: string;
     country: string;
-
-    // CONTACT
     mobile: string;
     phone: string;
     phone2: string;
     email: string;
     email2: string;
     contact_preferences: string;
-
-    // OTHER
     birthday: string | Date;
     vog: Vog;
     kcv_protocol: KcvProtocol;
@@ -32,7 +26,7 @@ export interface Registration {
     avg: boolean;
     first_aid: FirstAid;
     notes: string;
-    created_at: firestore.Timestamp;
+    timestamp: firestore.Timestamp;
 
     event_id: number;
 }

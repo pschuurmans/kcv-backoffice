@@ -45,6 +45,7 @@ import { CompaniesComponent } from './modules/companies/containers/companies/com
 import { CompaniesAddComponent } from './modules/companies/components/companies-add/companies-add.component';
 import { CompaniesEditComponent } from './modules/companies/components/companies-edit/companies-edit.component';
 import { CompaniesDetailsComponent } from './modules/companies/components/companies-details/companies-details.component';
+import { RegistrationDetailsComponent } from './modules/registrations/components/registration-details/registration-details.component';
 
 /**
  * Import every language you wish to highlight here
@@ -94,7 +95,8 @@ export class SentryErrorHandler implements ErrorHandler {
     CompaniesComponent,
     CompaniesAddComponent,
     CompaniesEditComponent,
-    CompaniesDetailsComponent
+    CompaniesDetailsComponent,
+    RegistrationDetailsComponent
   ],
   imports: [
     NgxDatatableModule,

@@ -1,7 +1,8 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Registration } from 'src/app/models/registration';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-registrations-list',
@@ -18,7 +19,7 @@ export class RegistrationsListComponent implements OnInit {
   columns = [
     { name: 'Voornaam', prop: 'first_name' },
     { name: 'Achternaam', prop: 'last_name' },
-    { name: 'Geregistreerd', prop: 'created_at', pipe: { transform: this.timestampPipe } }
+    { name: 'Geregistreerd', prop: 'timestamp', pipe: { transform: this.timestampPipe } }
   ];
 
   timestampPipe(value: any, ...args: any[]) {
@@ -28,21 +29,40 @@ export class RegistrationsListComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private afs: AngularFirestore,
     private el: ElementRef
   ) { }
 
   ngOnInit() {
     this.eventId = this.route.snapshot.paramMap.get('eventId'); // Save url parameter in variable
-    this.getRegistrations();
+    this.getRegistrations().subscribe(
+      (data: Registration[]) => this.registrations = data
+    );
   }
 
   getRegistrations() {
-    this.afs.collection('registrations', ref => ref.where('event_id', '==', this.eventId)).valueChanges()
-      .subscribe(
-        (data: Registration[]) => this.registrations = data,
-        err => console.log(err)
+    return this.afs.collection('registrations', ref => ref.where('event_id', '==', this.eventId)).snapshotChanges()
+      // https://github.com/angular/angularfire2/issues/1973
+      .pipe(
+        map(actions => {
+          return actions.map(a => {
+            const data = a.payload.doc.data();
+            const id = a.payload.doc.id;
+            return { id, ...data };
+          });
+        })
       );
+  }
+
+  onActivate(event) {
+    if (event.type === 'click') {
+      this.showRegistration(event.row.id);
+    }
+  }
+
+  showRegistration(id: number) {
+    this.router.navigate(['/registrations/' + id]);
   }
 
 }
