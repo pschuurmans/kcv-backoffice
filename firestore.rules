@@ -4,13 +4,13 @@ service cloud.firestore {
       allow read, write: if false;
     }
 
-    match /users/{userId} {
-      allow read, write: if isOwner(userId) || isAdmin();
+    match /users/{user} {
+      allow read, write: if isOwner(user) || isAdmin();
     }
 
-    match /access/{doc} {
-      allow read: if isOwner(doc);
-      allow write: if isAdmin();
+    match /access/{userId} {
+      allow read: if isOwner(userId);
+      allow read, write: if isAdmin();
     }
 
     match /registrations/{registration} {
@@ -25,20 +25,20 @@ service cloud.firestore {
       allow read, write: if isAdmin();
     }
 
-    match /companies/{doc} {
+    match /companies/{company} {
       allow read, write: if isAdmin();
     }
 
-    match /notifications/{doc} {
+    match /notifications/{notification} {
       allow read, write: if isAdmin();
     }
     
-    match /declarations/{doc} {
+    match /declarations/{declaration} {
       allow write;
       allow read, write: if isAdmin();
     }
     
-    match /keys/{doc} {
+    match /keys/{key} {
       allow read, write: if isAdmin();
     }
 
@@ -48,8 +48,8 @@ service cloud.firestore {
     function userExists() {
       return exists(/databases/$(database)/documents/users/$(request.auth.uid));
     }
-    function isOwner(userId) {
-      return request.auth.uid == userId;
+    function isOwner(docId) {
+      return request.auth.uid == docId;
     }
     function isAdmin() {
       return "ADMIN" in get(/databases/$(database)/documents/access/$(request.auth.uid)).data.roles;
