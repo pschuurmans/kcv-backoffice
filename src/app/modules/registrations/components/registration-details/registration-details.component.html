@@ -11,6 +11,23 @@
         </div>
 
         <strong>Naam:</strong> {{ (registration | async)?.first_name }} {{ (registration | async)?.last_name }}<br />
-        <strong>Voor het laatst bewerkt:</strong> {{ (registration | async)?.timestamp || '' | timestamp }}<br />
+        <strong>Adres:</strong> {{ (registration | async)?.street }} {{ (registration | async)?.house_nr }}<br />
+        {{ (registration | async)?.postal_code }}  {{ (registration | async)?.city }}<br />
+        {{ (registration | async)?.country }}<br />
+        <strong>Contact:</strong> <br />
+        - {{ (registration | async)?.mobile }}<br />
+        - {{ (registration | async)?.phone }}<br />
+        - {{ (registration | async)?.email }}<br />
+        <strong>Evenement:</strong><br />
+        - Deelname: {{ (registration | async)?.participation }}<br />
+        - Taak: {{ (registration | async)?.job }}<br />
+        - Track: {{ (registration | async)?.track }}<br />
+        - Motivatie: {{ (registration | async)?.motivation }}<br />
+        <strong>Overig:</strong><br />
+        - Geboortedatum: {{ (registration | async)?.birthday }}<br />
+        - Eerste keer: {{ (registration | async)?.first_time }}<br />
+        - EHBO/BHV: {{ (registration | async)?.first_aid }}<br />
+        - Bijzonderheden: {{ (registration | async)?.notes }}<br />
+        <strong>Tijdstempel:</strong> {{ (registration | async)?.timestamp || '' | timestamp }}<br />
     </div>
 </section>
