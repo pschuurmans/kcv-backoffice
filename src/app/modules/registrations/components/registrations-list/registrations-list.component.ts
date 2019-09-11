@@ -37,7 +37,8 @@ export class RegistrationsListComponent implements OnInit {
   ngOnInit() {
     this.eventId = this.route.snapshot.paramMap.get('eventId'); // Save url parameter in variable
     this.getRegistrations().subscribe(
-      (data: Registration[]) => this.registrations = data
+      (data: Registration[]) => this.registrations = data,
+      err => console.log(err)
     );
   }
 

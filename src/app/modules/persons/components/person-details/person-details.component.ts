@@ -33,8 +33,11 @@ export class PersonDetailsComponent implements OnInit {
   }
 
   deletePerson() {
-    this.afs.doc('persons/' + this.personId).delete();
-    this.router.navigate(['/persons']);
+    const userAgreed = confirm('Weet je zeker dat je dit item wilt verwijderen?');
+    if (userAgreed) {
+      this.afs.doc('persons/' + this.personId).delete();
+      this.router.navigate(['/persons']);
+    }
   }
 
 }

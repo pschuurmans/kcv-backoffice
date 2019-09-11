@@ -5,7 +5,8 @@ import { User } from "../../models/user";
 
 exports = module.exports = functions.https.onCall(async (data: User, context: any) => {
     const doc = {
-        roles: ['GUEST']
+        roles: ['GUEST'],
+        events: []
     }
 
     await admin.firestore().collection('access').doc(data.uid).set(doc);

@@ -33,8 +33,11 @@ export class RegistrationDetailsComponent implements OnInit {
   }
 
   deleteRegistration() {
-    this.afs.doc('registrations/' + this.registrationId).delete();
-    this.router.navigate(['/registrations']);
+    const userAgreed = confirm('Weet je zeker dat je dit item wilt verwijderen?');
+    if (userAgreed) {
+      this.afs.doc('registrations/' + this.registrationId).delete();
+      this.router.navigate(['/registrations']);
+    }
   }
 
 }
