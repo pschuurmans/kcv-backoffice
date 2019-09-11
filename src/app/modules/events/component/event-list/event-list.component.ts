@@ -17,6 +17,9 @@ export class EventListComponent implements OnInit {
   }
 
   deleteDoc(docId) {
-    this.afs.doc('events/' + docId).delete();
+    const userAgreed = confirm('Weet je zeker dat je dit item wilt verwijderen?');
+    if (userAgreed) {
+      this.afs.doc('events/' + docId).delete();
+    }
   }
 }
