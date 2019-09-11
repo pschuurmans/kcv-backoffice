@@ -23,7 +23,8 @@ export class PersonsComponent implements OnInit {
 
   ngOnInit() {
     this.getPersons().subscribe(
-      data => this.persons = data
+      data => this.persons = data,
+      err => console.log(err)
     );
   }
 
