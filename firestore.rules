@@ -15,6 +15,7 @@ service cloud.firestore {
 
     match /registrations/{registration} {
       allow read, write: if isAdmin();
+      allow read, write: if resource.data.event_id in get(/databases/$(database)/documents/access/$(request.auth.uid)).data.events;
     }
 
     match /events/{event} {
