@@ -33,8 +33,11 @@ export class CompaniesDetailsComponent implements OnInit {
   }
 
   deleteCompany() {
-    this.afs.doc('companies/' + this.companyId).delete();
-    this.router.navigate(['/companies']);
+    const userAgreed = confirm('Weet je zeker dat je dit item wilt verwijderen?');
+    if (userAgreed) {
+      this.afs.doc('companies/' + this.companyId).delete();
+      this.router.navigate(['/companies']);
+    }
   }
 
 
