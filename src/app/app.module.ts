@@ -58,7 +58,7 @@ export function hljsLanguages() {
 }
 
 Sentry.init({
-  dsn: 'https://64b2fcd301c94ccbb47204888d3071f0@sentry.io/1503763'
+  dsn: environment.sentry_dsn
 });
 
 @Injectable()

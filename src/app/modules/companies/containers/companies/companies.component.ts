@@ -22,7 +22,8 @@ export class CompaniesComponent implements OnInit {
 
   ngOnInit() {
     this.getCompanies().subscribe(
-      (data: Company[]) => this.companies = data
+      (data: Company[]) => this.companies = data,
+      err => console.log(err)
     );
   }
 
