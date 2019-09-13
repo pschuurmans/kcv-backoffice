@@ -12,7 +12,8 @@ export const environment = {
     storageBucket: 'dev-kcv-backoffice.appspot.com',
     messagingSenderId: '24850615386',
     appId: '1:24850615386:web:ceba1a50f71547c1'
-  }
+  },
+  sentry_dsn: 'https://b94a7e27739e4b4c8e8b231823596a17@sentry.io/1726489'
 };
 
 /*
