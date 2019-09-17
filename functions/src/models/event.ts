@@ -6,7 +6,7 @@ export interface Event {
     price: Price[];
 }
 
-interface Price {
+export interface Price {
     participation: string;
-    cost: number;
+    cost: string;
 }
