@@ -22,6 +22,8 @@ import { CompaniesEditComponent } from './modules/companies/components/companies
 import { CompaniesDetailsComponent } from './modules/companies/components/companies-details/companies-details.component';
 import { CompaniesComponent } from './modules/companies/containers/companies/companies.component';
 import { RegistrationDetailsComponent } from './modules/registrations/components/registration-details/registration-details.component';
+import { RegistrationAddComponent } from './modules/registrations/components/registration-add/registration-add.component';
+import { PaymentStatusComponent } from './modules/payments/components/payment-status/payment-status.component';
 
 
 const routes: Routes = [
@@ -30,6 +32,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'items', component: ItemsComponent, canActivate: [AuthGuard] },
+  { path: 'registrations/add', component: RegistrationAddComponent, canActivate: [AuthGuard] },
   { path: 'registrations/event/:eventId', component: RegistrationsListComponent, canActivate: [AuthGuard] },
   { path: 'registrations/:registrationId', component: RegistrationDetailsComponent, canActivate: [AuthGuard] },
   { path: 'registrations', component: RegistrationsComponent, canActivate: [AuthGuard] },
@@ -44,6 +47,7 @@ const routes: Routes = [
   { path: 'companies/:companyId/edit', component: CompaniesEditComponent, canActivate: [AuthGuard] },
   { path: 'companies/:companyId', component: CompaniesDetailsComponent, canActivate: [AuthGuard] },
   { path: 'companies', component: CompaniesComponent, canActivate: [AuthGuard] },
+  { path: 'payments/status/:paymentId', component: PaymentStatusComponent },
 
   { path: 'no-access', component: NoAccessComponent },
   { path: '404', component: NotFoundComponent },
