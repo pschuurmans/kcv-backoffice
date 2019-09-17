@@ -16,7 +16,7 @@ export class PaymentStatusComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.afs.collection('payments').doc(this.paymentId).get()
+    this.afs.collection('payments').doc(this.paymentId).valueChanges()
       .subscribe(
         data => this.data = data,
         err => console.log(err)
