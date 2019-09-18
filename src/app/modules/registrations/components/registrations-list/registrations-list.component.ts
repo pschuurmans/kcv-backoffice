@@ -20,7 +20,7 @@ export class RegistrationsListComponent implements OnInit {
   columns = [
     { name: 'Voornaam', prop: 'first_name' },
     { name: 'Achternaam', prop: 'last_name' },
-    { name: 'Geregistreerd', prop: 'timestamp', pipe: { transform: TimestampPipe } }
+    { name: 'Geregistreerd', prop: 'timestamp', pipe: new TimestampPipe() }
   ];
 
   constructor(
