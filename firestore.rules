@@ -42,6 +42,10 @@ service cloud.firestore {
     match /keys/{key} {
       allow read, write: if isAdmin();
     }
+    
+    match /payments/{payment} {
+      allow read, write: if isAdmin();
+    }
 
     function isSignedIn() {
       return request.auth != null;

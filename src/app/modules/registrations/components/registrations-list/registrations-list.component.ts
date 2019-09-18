@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Registration } from 'src/app/models/registration';
 import { map } from 'rxjs/operators';
+import { TimestampPipe } from 'src/app/core/pipes/timestamp.pipe';
 
 @Component({
   selector: 'app-registrations-list',
@@ -19,13 +20,8 @@ export class RegistrationsListComponent implements OnInit {
   columns = [
     { name: 'Voornaam', prop: 'first_name' },
     { name: 'Achternaam', prop: 'last_name' },
-    { name: 'Geregistreerd', prop: 'timestamp', pipe: { transform: this.timestampPipe } }
+    { name: 'Geregistreerd', prop: 'timestamp', pipe: new TimestampPipe() }
   ];
-
-  timestampPipe(value: any, ...args: any[]) {
-    const seconds = value.seconds * 1000; // Convert timestamp to date
-    return new Date(seconds).toLocaleString('nl-NL');
-  }
 
   constructor(
     private route: ActivatedRoute,

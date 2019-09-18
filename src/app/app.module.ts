@@ -46,6 +46,14 @@ import { CompaniesAddComponent } from './modules/companies/components/companies-
 import { CompaniesEditComponent } from './modules/companies/components/companies-edit/companies-edit.component';
 import { CompaniesDetailsComponent } from './modules/companies/components/companies-details/companies-details.component';
 import { RegistrationDetailsComponent } from './modules/registrations/components/registration-details/registration-details.component';
+import { RegistrationAddComponent } from './modules/registrations/components/registration-add/registration-add.component';
+import { PaymentStatusComponent } from './modules/payments/components/payment-status/payment-status.component';
+import { PaymentsComponent } from './modules/payments/containers/payments/payments.component';
+import { PaymentAmountPipe } from './core/pipes/payment-amount.pipe';
+import { PaymentStatusPipe } from './core/pipes/payment-status.pipe';
+import { registerLocaleData } from '@angular/common';
+import localeNl from '@angular/common/locales/nl';
+registerLocaleData(localeNl, 'nl');
 
 /**
  * Import every language you wish to highlight here
@@ -53,7 +61,7 @@ import { RegistrationDetailsComponent } from './modules/registrations/components
  */
 export function hljsLanguages() {
   return [
-    {name: 'javascript', func: javascript},
+    { name: 'javascript', func: javascript },
   ];
 }
 
@@ -63,7 +71,7 @@ Sentry.init({
 
 @Injectable()
 export class SentryErrorHandler implements ErrorHandler {
-  constructor() {}
+  constructor() { }
   handleError(error) {
     const eventId = Sentry.captureException(error.originalError || error);
     Sentry.showReportDialog({ eventId });
@@ -96,7 +104,12 @@ export class SentryErrorHandler implements ErrorHandler {
     CompaniesAddComponent,
     CompaniesEditComponent,
     CompaniesDetailsComponent,
-    RegistrationDetailsComponent
+    RegistrationDetailsComponent,
+    RegistrationAddComponent,
+    PaymentStatusComponent,
+    PaymentsComponent,
+    PaymentAmountPipe,
+    PaymentStatusPipe
   ],
   imports: [
     NgxDatatableModule,
