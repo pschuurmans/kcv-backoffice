@@ -1,0 +1,13 @@
+<section class="section">
+    <div class="container">
+        <div class="level">
+            <div class="level-left">
+                <p class="title">Betalingen</p>
+            </div>
+        </div>
+        <ngx-datatable class="material fullscreen" [rows]="this.payments" [rowHeight]="rowHeight"
+            [headerHeight]="headerHeight" [columnMode]="'force'" (activate)="onActivate($event)"
+            [columns]="this.columns">
+        </ngx-datatable>
+    </div>
+</section>

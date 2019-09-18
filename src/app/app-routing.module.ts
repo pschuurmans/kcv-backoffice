@@ -24,6 +24,7 @@ import { CompaniesComponent } from './modules/companies/containers/companies/com
 import { RegistrationDetailsComponent } from './modules/registrations/components/registration-details/registration-details.component';
 import { RegistrationAddComponent } from './modules/registrations/components/registration-add/registration-add.component';
 import { PaymentStatusComponent } from './modules/payments/components/payment-status/payment-status.component';
+import { PaymentsComponent } from './modules/payments/containers/payments/payments.component';
 
 
 const routes: Routes = [
@@ -48,6 +49,7 @@ const routes: Routes = [
   { path: 'companies/:companyId', component: CompaniesDetailsComponent, canActivate: [AuthGuard] },
   { path: 'companies', component: CompaniesComponent, canActivate: [AuthGuard] },
   { path: 'payments/status/:paymentId', component: PaymentStatusComponent },
+  { path: 'payments', component: PaymentsComponent, canActivate: [AuthGuard] },
 
   { path: 'no-access', component: NoAccessComponent },
   { path: '404', component: NotFoundComponent },

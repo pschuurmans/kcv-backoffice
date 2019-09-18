@@ -48,6 +48,12 @@ import { CompaniesDetailsComponent } from './modules/companies/components/compan
 import { RegistrationDetailsComponent } from './modules/registrations/components/registration-details/registration-details.component';
 import { RegistrationAddComponent } from './modules/registrations/components/registration-add/registration-add.component';
 import { PaymentStatusComponent } from './modules/payments/components/payment-status/payment-status.component';
+import { PaymentsComponent } from './modules/payments/containers/payments/payments.component';
+import { PaymentAmountPipe } from './core/pipes/payment-amount.pipe';
+import { PaymentStatusPipe } from './core/pipes/payment-status.pipe';
+import { registerLocaleData } from '@angular/common';
+import localeNl from '@angular/common/locales/nl';
+registerLocaleData(localeNl, 'nl');
 
 /**
  * Import every language you wish to highlight here
@@ -55,7 +61,7 @@ import { PaymentStatusComponent } from './modules/payments/components/payment-st
  */
 export function hljsLanguages() {
   return [
-    {name: 'javascript', func: javascript},
+    { name: 'javascript', func: javascript },
   ];
 }
 
@@ -65,7 +71,7 @@ Sentry.init({
 
 @Injectable()
 export class SentryErrorHandler implements ErrorHandler {
-  constructor() {}
+  constructor() { }
   handleError(error) {
     const eventId = Sentry.captureException(error.originalError || error);
     Sentry.showReportDialog({ eventId });
@@ -100,7 +106,10 @@ export class SentryErrorHandler implements ErrorHandler {
     CompaniesDetailsComponent,
     RegistrationDetailsComponent,
     RegistrationAddComponent,
-    PaymentStatusComponent
+    PaymentStatusComponent,
+    PaymentsComponent,
+    PaymentAmountPipe,
+    PaymentStatusPipe
   ],
   imports: [
     NgxDatatableModule,

@@ -29,6 +29,9 @@
       <a class="navbar-item" routerLink="/companies" *ngIf="roles.includes('ADMIN')" (click)="toggleNavbar()">
         Bedrijven
       </a>
+      <a class="navbar-item" routerLink="/payments" *ngIf="roles.includes('ADMIN')" (click)="toggleNavbar()">
+        Betalingen
+      </a>
     </div>
 
     <div class="navbar-end">
