@@ -10,6 +10,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 export class PaymentStatusComponent implements OnInit {
   paymentId;
   data: any;
+  isLoading = true;
 
   constructor(private route: ActivatedRoute, private afs: AngularFirestore) {
     this.paymentId = this.route.snapshot.paramMap.get('paymentId'); // Save url parameter in variable
@@ -18,7 +19,10 @@ export class PaymentStatusComponent implements OnInit {
   ngOnInit() {
     this.afs.collection('payments').doc(this.paymentId).valueChanges()
       .subscribe(
-        data => this.data = data,
+        data => {
+          this.data = data;
+          this.isLoading = false;
+        },
         err => console.log(err)
       );
   }
