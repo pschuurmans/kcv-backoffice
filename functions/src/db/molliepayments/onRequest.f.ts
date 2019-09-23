@@ -1,6 +1,6 @@
-const functions = require('firebase-functions');
-const admin = require('firebase-admin');
-try { admin.initializeApp(functions.config().firebase); } catch (e) { } // You do that because the admin SDK can only be initialized once.
+import * as admin from 'firebase-admin'
+import * as functions from 'firebase-functions'
+admin.initializeApp(functions.config().firebase, 'dbMolliepaymentsOnRequest');
 
 const { createMollieClient } = require('@mollie/api-client');
 const mollieClient = createMollieClient({ apiKey: functions.config().mollie.api_key });
@@ -10,6 +10,10 @@ exports = module.exports = functions.https.onRequest(async (request: any, respon
     let payment = await mollieClient.payments.get(paymentId);
 
     payment = await JSON.parse(JSON.stringify(payment)); // convert the nested object to a plain object
-    await admin.firestore().collection('payments').doc(payment.metadata.registration_id).set(payment)
+    await admin.firestore()
+        .collection('molliepayments')
+        .doc(payment.id)
+        .set(payment);
+
     response.end();
 });
