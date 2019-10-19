@@ -56,6 +56,7 @@ function readEvent(event_id: string) {
         .collection('events')
         .where('tag', '==', tag)
         .where('year', '==', year)
+        .get()
         .then((doc: any) => {
             const event = doc.data();
             return event;
