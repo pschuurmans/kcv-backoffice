@@ -49,10 +49,13 @@ exports = module.exports = functions.firestore
     });
 
 function readEvent(event_id: string) {
+    const tag = event_id.split(/-/)[0];
+    const year = event_id.split(/-/)[1];
+
     return admin.firestore()
         .collection('events')
-        .doc(event_id)
-        .get()
+        .where('tag', '==', tag)
+        .where('year', '==', year)
         .then((doc: any) => {
             const event = doc.data();
             return event;
