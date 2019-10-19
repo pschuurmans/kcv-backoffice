@@ -4,27 +4,38 @@
   <div class="field">
     <label class="label">Naam *</label>
     <div class="control">
-      <input class="input" type="text" formControlName="name" required>
+      <input class="input" type="text" formControlName="name" placeholder="Hightime" required>
     </div>
   </div>
   <div class="field">
     <label class="label">Jaar *</label>
     <div class="control">
-      <input class="input" type="text" formControlName="year" required>
+      <input class="input" type="text" formControlName="year" placeholder="2019" required>
     </div>
   </div>
   <div class="field">
     <label class="label">Beschrijving</label>
     <div class="control">
-      <input class="input" type="text" formControlName="description">
+      <input class="input" type="text" formControlName="description" placeholder="Finding Jesus">
     </div>
   </div>
   <div class="field">
     <label class="label">Tag</label>
     <div class="control">
-      <input class="input" type="text" formControlName="tag">
+      <input class="input" type="text" formControlName="tag" placeholder="ht">
+    </div>
+  </div>
+  <div class="field">
+    <label class="label">Prijzen</label>
+    <form [formGroup]="priceForm">
+      <input class="input" type="text" formControlName="participation" placeholder="Tiener" style="display:inline">
+      <input class="input" type="text" formControlName="cost" placeholder="104.00" style="display:inline">
+      <button (click)="addPrice()" class="button">Submit</button>
+    </form>
+    <div class="control" *ngFor="let price of this.prices">
+      <li>{{ price.participation }} - {{ price.cost }}</li>
     </div>
   </div>
   <p><i>* verplicht veld</i></p>
-  <button type="submit" class="button is-primary" [disabled]="!eventForm.valid">Submit</button>
+  <button type="submit" class="button is-link" [disabled]="!eventForm.valid">Submit</button>
 </form>

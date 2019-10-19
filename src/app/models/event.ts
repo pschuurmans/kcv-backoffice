@@ -8,5 +8,5 @@ export interface Event {
 
 interface Price {
     participation: string;
-    cost: number;
+    cost: string;
 }

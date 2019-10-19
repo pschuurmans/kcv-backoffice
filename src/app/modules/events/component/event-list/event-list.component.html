@@ -13,7 +13,7 @@
     <td>{{ doc.description }}</td>
     <td>{{ doc.tag }}</td>
     <td>
-      <button class="button is-white tooltip" routerLink="script/{{ doc.tag }}" data-tooltip="Code om te gebruiken met Google Script">
+      <button class="button is-white tooltip" routerLink="script/{{ doc.tag }}-{{ doc.year }}" data-tooltip="Code om te gebruiken met Google Script">
         <i class="fas fa-code"></i>
       </button>
       <button class="button is-white tooltip" (click)="deleteDoc(doc.id)" data-tooltip="Let op: registraties worden niet verwijderd">
