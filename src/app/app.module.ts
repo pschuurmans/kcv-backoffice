@@ -53,6 +53,7 @@ import { PaymentAmountPipe } from './core/pipes/payment-amount.pipe';
 import { PaymentStatusPipe } from './core/pipes/payment-status.pipe';
 import { registerLocaleData } from '@angular/common';
 import localeNl from '@angular/common/locales/nl';
+import { PaymentDetailsComponent } from './modules/payments/components/payment-details/payment-details.component';
 registerLocaleData(localeNl, 'nl');
 
 /**
@@ -109,7 +110,8 @@ export class SentryErrorHandler implements ErrorHandler {
     PaymentStatusComponent,
     PaymentsComponent,
     PaymentAmountPipe,
-    PaymentStatusPipe
+    PaymentStatusPipe,
+    PaymentDetailsComponent
   ],
   imports: [
     NgxDatatableModule,

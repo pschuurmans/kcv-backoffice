@@ -20,10 +20,10 @@ export class PaymentsComponent implements OnInit {
   payments: Payment[] = [];
 
   columns = [
-    { name: 'Bedrag', prop: 'amount', pipe: new PaymentAmountPipe() },
+    { name: 'Bedrag', prop: 'amount', pipe: new PaymentAmountPipe(), maxWidth: 100 },
+    { name: 'Status', pipe: new PaymentStatusPipe(), maxWidth: 150 },
     { name: 'Beschrijving', prop: 'description' },
     { name: 'Datum', prop: 'createdAt', pipe: new DatePipe('nl-NL') },
-    { name: 'Status', pipe: new PaymentStatusPipe() },
   ];
 
   constructor(

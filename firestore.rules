@@ -46,6 +46,10 @@ service cloud.firestore {
     match /payments/{payment} {
       allow read, write: if isAdmin();
     }
+    
+    match /molliepayments/{payment} {
+      allow read, write: if isAdmin();
+    }
 
     function isSignedIn() {
       return request.auth != null;

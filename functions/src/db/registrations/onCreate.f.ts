@@ -66,8 +66,8 @@ function createPayment(price: string, description: string, billingEmail: string,
             value: price
         },
         description: description,
-        redirectUrl: `https://backoffice.kcv-net.nl/payments/status/${registrationId}`,
-        webhookUrl: 'https://us-central1-dev-kcv-backoffice.cloudfunctions.net/dbPaymentsOnRequest',
+        redirectUrl: `https://www.4u-hightime.nl/bedankt`,
+        webhookUrl: functions.config().mollie.paymentwebhookurl,
         metadata: {
             registration_id: registrationId,
         },
