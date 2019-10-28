@@ -65,10 +65,21 @@ function readEvent(event_id: string) {
         .where('tag', '==', tag)
         .where('year', '==', year)
         .get()
-        .then((doc: any) => {
-            const event = doc.data();
+        .then(async (querySnapshot: any) => {
+            let event = null;
+            await querySnapshot.forEach((doc: any) => {
+                console.log(doc.data());
+                event = doc.data();
+            });
             return event;
+        }).catch((err: any) => {
+            console.log('Error getting documents', err);
         });
+
+    // .then((doc: any) => {
+    //     const event = doc.data();
+    //     return event;
+    // });
 }
 
 function createPayment(price: string, description: string, billingEmail: string, registrationId: string) {
