@@ -66,10 +66,8 @@ function readEvent(event_id: string) {
         .where('year', '==', year)
         .get()
         .then((doc: any) => {
-            console.log(doc);
-            return doc;
-            // const event = doc.data();
-            // return event;
+            const event = doc.data();
+            return event;
         });
 }
 
