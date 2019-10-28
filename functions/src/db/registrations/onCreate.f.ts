@@ -66,8 +66,10 @@ function readEvent(event_id: string) {
         .where('year', '==', year)
         .get()
         .then((querySnapshot: any) => {
+            console.log(querySnapshot);
             querySnapshot.forEach((doc: any) => {
                 console.log(doc.data());
+                return doc.data();
             });
             // if (querySnapshot.length === 1) {
             //     return querySnapshot[0].data();
