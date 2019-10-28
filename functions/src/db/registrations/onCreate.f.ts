@@ -52,22 +52,25 @@ function readEvent(event_id: string) {
     const tag = event_id.split(/-/)[0];
     const year = event_id.split(/-/)[1];
 
-    let query = admin.firestore().collection('events')
-    query = query.where('tag', '==', tag);
-    query = query.where('year', '==', year);
-    query.get().then((doc: any) => {
-        const event = doc.data();
-        return event;
-    })
-    // return admin.firestore()
-    //     .collection('events')
-    //     .where('tag', '==', tag)
-    //     .where('year', '==', year)
-    //     .get()
-    //     .then((doc: any) => {
-    //         const event = doc.data();
-    //         return event;
-    //     });
+    // let query = admin.firestore().collection('events')
+    // query = query.where('tag', '==', tag);
+    // query = query.where('year', '==', year);
+    // const data = query.get().then((doc: any) => {
+    //     const event = doc.data();
+    //     return event;
+    // });
+    // return data;
+    return admin.firestore()
+        .collection('events')
+        .where('tag', '==', tag)
+        .where('year', '==', year)
+        .get()
+        .then((doc: any) => {
+            console.log(doc);
+            return doc;
+            // const event = doc.data();
+            // return event;
+        });
 }
 
 function createPayment(price: string, description: string, billingEmail: string, registrationId: string) {
