@@ -66,11 +66,14 @@ function readEvent(event_id: string) {
         .where('year', '==', year)
         .get()
         .then((querySnapshot: any) => {
-            if (querySnapshot.length === 1) {
-                return querySnapshot[0].data();
-            } else {
-                return null;
-            }
+            querySnapshot.forEach((doc: any) => {
+                console.log(doc.data());
+            });
+            // if (querySnapshot.length === 1) {
+            //     return querySnapshot[0].data();
+            // } else {
+            //     return null;
+            // }
             // let event = null;
             // await querySnapshot.forEach((doc: any) => {
             //     console.log(doc.data());
