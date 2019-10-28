@@ -65,13 +65,18 @@ function readEvent(event_id: string) {
         .where('tag', '==', tag)
         .where('year', '==', year)
         .get()
-        .then(async (querySnapshot: any) => {
-            let event = null;
-            await querySnapshot.forEach((doc: any) => {
-                console.log(doc.data());
-                event = doc.data();
-            });
-            return event;
+        .then((querySnapshot: any) => {
+            if (querySnapshot.length === 1) {
+                return querySnapshot[0].data();
+            } else {
+                return null;
+            }
+            // let event = null;
+            // await querySnapshot.forEach((doc: any) => {
+            //     console.log(doc.data());
+            //     event = doc.data();
+            // });
+            // return event;
         }).catch((err: any) => {
             console.log('Error getting documents', err);
         });
