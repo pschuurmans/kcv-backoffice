@@ -23,44 +23,69 @@ exports = module.exports = functions.firestore
         const event: Event = await readEvent(registration.event_id);
         const registrationCost = event.price.find((price: Price) => price.participation === registration.participation);
 
-        const payment = await createPayment(
-            registrationCost!.cost,
-            `${registration.first_name} ${registration.last_name} - ${event.name} ${event.year}`,
-            registration.email,
-            context.params.registrationId
-        );
+        if (event.mollie) {
+            const payment = await createPayment(
+                registrationCost!.cost,
+                `${registration.first_name} ${registration.last_name} - ${event.name} ${event.year}`,
+                registration.email,
+                context.params.registrationId
+            );
 
-        const data = {
-            from: 'Stichting KCV <backoffice@mail.kcv-net.nl>',
-            to: registration.email,
-            subject: `Bevestiging registratie ${event.name} ${event.year}`,
-            template: 'confirm-registration',
-            'h:X-Mailgun-Variables': JSON.stringify({
-                event,
-                registration,
-                registrationCost: registrationCost!.cost,
-                payment_link: payment._links.checkout.href
-            }),
-        };
+            const data = {
+                from: 'Stichting KCV <backoffice@mail.kcv-net.nl>',
+                to: registration.email,
+                subject: `Bevestiging registratie ${event.name} ${event.year}`,
+                template: 'confirm-registration',
+                'h:X-Mailgun-Variables': JSON.stringify({
+                    event,
+                    registration,
+                    registrationCost: registrationCost!.cost,
+                    payment_link: payment._links.checkout.href
+                }),
+            };
 
-        mg.messages().send(data, function (error: any, body: any) {
-            console.log(body);
-        });
+            mg.messages().send(data, function (error: any, body: any) {
+                console.log(body);
+            });
+        }
     });
 
 function readEvent(event_id: string) {
     const tag = event_id.split(/-/)[0];
     const year = event_id.split(/-/)[1];
 
+    // let query = admin.firestore().collection('events')
+    // query = query.where('tag', '==', tag);
+    // query = query.where('year', '==', year);
+    // const data = query.get().then((doc: any) => {
+    //     const event = doc.data();
+    //     return event;
+    // });
+    // return data;
     return admin.firestore()
         .collection('events')
         .where('tag', '==', tag)
         .where('year', '==', year)
         .get()
-        .then((doc: any) => {
-            const event = doc.data();
+        .then((snapshot: any) => {
+            if (snapshot.empty) {
+                console.log('No matching documents.');
+                return;
+            }
+            let event = null;
+            snapshot.forEach((doc: any) => {
+                event = doc.data();
+            });
             return event;
+        })
+        .catch((err: any) => {
+            console.log('Error getting documents', err);
         });
+
+    // .then((doc: any) => {
+    //     const event = doc.data();
+    //     return event;
+    // });
 }
 
 function createPayment(price: string, description: string, billingEmail: string, registrationId: string) {

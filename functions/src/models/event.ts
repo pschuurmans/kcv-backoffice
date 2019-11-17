@@ -4,6 +4,7 @@ export interface Event {
     description: string;
     tag: string;
     price: Price[];
+    mollie: boolean;
 }
 
 export interface Price {
