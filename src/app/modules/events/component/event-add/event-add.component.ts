@@ -21,7 +21,8 @@ export class EventAddComponent implements OnInit {
     year: new FormControl(''),
     description: new FormControl(''),
     tag: new FormControl(''),
-    price: new FormArray([])
+    price: new FormArray([]),
+    mollie: new FormControl(false)
   });
 
   priceForm = new FormGroup({
