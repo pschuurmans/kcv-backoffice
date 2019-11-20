@@ -1,6 +1,6 @@
 <section class="section">
   <div class="container is-fluid">
-    <p class="title">Registraties van {{ this.eventId }}</p>
+    <p class="title">Registraties van {{ this.eventId }} ({{ this.registrations.length }})</p>
     <ngx-datatable class="material fullscreen" [rows]="this.registrations" [columns]="this.columns"
       [rowHeight]="rowHeight" [headerHeight]="headerHeight" [columnMode]="'force'" (activate)="onActivate($event)">
     </ngx-datatable>
