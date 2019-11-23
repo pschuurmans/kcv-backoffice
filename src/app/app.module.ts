@@ -61,6 +61,7 @@ import { LoaderService } from './core/services/loader.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoaderInterceptor } from './core/interceptors/loader.interceptor';
 import { HttpClientModule } from '@angular/common/http';
+import { UsersComponent } from './modules/users/containers/users/users.component';
 
 /**
  * Import every language you wish to highlight here
@@ -118,7 +119,8 @@ export class SentryErrorHandler implements ErrorHandler {
     PaymentAmountPipe,
     PaymentStatusPipe,
     PaymentDetailsComponent,
-    LoaderComponent
+    LoaderComponent,
+    UsersComponent
   ],
   imports: [
     NgxDatatableModule,
