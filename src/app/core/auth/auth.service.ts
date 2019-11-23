@@ -15,6 +15,7 @@ import { EmailPasswordCredentials } from './email-password-credentials';
 import { Store } from '@ngrx/store';
 import { login, logout } from 'src/app/store/actions/auth.actions';
 import * as firebase from 'firebase/app';
+import { LoaderService } from '../services/loader.service';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,8 @@ export class AuthService {
     private afs: AngularFirestore,
     private fns: AngularFireFunctions,
     private router: Router,
-    private store: Store<{ auth: boolean }>
+    private store: Store<{ auth: boolean }>,
+    private loaderService: LoaderService
   ) {
     this.user$ = this.afAuth.authState.pipe(
       switchMap(user => {
@@ -75,6 +77,8 @@ export class AuthService {
   }
 
   signInWithEmailAndPassword(credentials: EmailPasswordCredentials) {
+    this.loaderService.show();
+
     // Existing and future Auth states are now persisted in the current
     // session only. Closing the window would clear any existing state even if
     // a user forgets to sign out.
@@ -83,14 +87,18 @@ export class AuthService {
     this.afAuth.auth.signInWithEmailAndPassword(credentials.email, credentials.password)
       .then(() => {
         this.store.dispatch(login());
+        this.loaderService.hide();
         return this.router.navigate(['/my-profile']);
       })
       .catch(error => {
+        this.loaderService.hide();
         console.log(error);
       });
   }
 
   async signInWithGoogle() {
+    this.loaderService.show();
+
     const provider = new auth.GoogleAuthProvider();
     // Existing and future Auth states are now persisted in the current
     // session only. Closing the window would clear any existing state even if
@@ -119,6 +127,7 @@ export class AuthService {
           await dbAccessOnCall.toPromise();
         }
         this.store.dispatch(login());
+        this.loaderService.hide();
         return this.router.navigate(['/my-profile']);
       });
   }
