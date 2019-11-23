@@ -132,6 +132,10 @@ export class AuthService {
         this.store.dispatch(login());
         this.loaderService.hide();
         return this.router.navigate(['/my-profile']);
+      })
+      .catch(error => {
+        this.loaderService.hide();
+        console.log(error);
       });
   }
 
