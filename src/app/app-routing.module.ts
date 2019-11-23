@@ -26,6 +26,7 @@ import { RegistrationAddComponent } from './modules/registrations/components/reg
 import { PaymentStatusComponent } from './modules/payments/components/payment-status/payment-status.component';
 import { PaymentsComponent } from './modules/payments/containers/payments/payments.component';
 import { PaymentDetailsComponent } from './modules/payments/components/payment-details/payment-details.component';
+import { UsersComponent } from './modules/users/containers/users/users.component';
 
 
 const routes: Routes = [
@@ -52,6 +53,7 @@ const routes: Routes = [
   { path: 'payments/status/:paymentId', component: PaymentStatusComponent },
   { path: 'payments/:paymentId', component: PaymentDetailsComponent, canActivate: [AuthGuard] },
   { path: 'payments', component: PaymentsComponent, canActivate: [AuthGuard] },
+  { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
 
   { path: 'no-access', component: NoAccessComponent },
   { path: '404', component: NotFoundComponent },

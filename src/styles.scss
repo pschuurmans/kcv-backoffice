@@ -15,6 +15,13 @@
 // highlight.js theme
 @import '~highlight.js/styles/monokai.css';
 
+// angular material theme
+.mat-progress-spinner circle,
+.mat-spinner circle {
+  stroke: #418dff;
+}
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
 html {
-    background-color: #f8f8f8;
+  background-color: #f8f8f8;
 }

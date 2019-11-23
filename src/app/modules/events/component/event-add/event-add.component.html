@@ -36,6 +36,12 @@
       <li>{{ price.participation }} - {{ price.cost }}</li>
     </div>
   </div>
+  <div class="field">
+    <label class="checkbox" disabled>
+      <input type="checkbox" disabled>
+      Gebruik mollie voor automatische betalingen
+    </label>
+  </div>
   <p><i>* verplicht veld</i></p>
   <button type="submit" class="button is-link" [disabled]="!eventForm.valid">Submit</button>
 </form>

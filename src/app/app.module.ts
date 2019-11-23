@@ -54,7 +54,14 @@ import { PaymentStatusPipe } from './core/pipes/payment-status.pipe';
 import { registerLocaleData } from '@angular/common';
 import localeNl from '@angular/common/locales/nl';
 import { PaymentDetailsComponent } from './modules/payments/components/payment-details/payment-details.component';
+import { LoaderComponent } from './containers/loader/loader.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 registerLocaleData(localeNl, 'nl');
+import { LoaderService } from './core/services/loader.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoaderInterceptor } from './core/interceptors/loader.interceptor';
+import { HttpClientModule } from '@angular/common/http';
+import { UsersComponent } from './modules/users/containers/users/users.component';
 
 /**
  * Import every language you wish to highlight here
@@ -111,11 +118,14 @@ export class SentryErrorHandler implements ErrorHandler {
     PaymentsComponent,
     PaymentAmountPipe,
     PaymentStatusPipe,
-    PaymentDetailsComponent
+    PaymentDetailsComponent,
+    LoaderComponent,
+    UsersComponent
   ],
   imports: [
     NgxDatatableModule,
     BrowserModule,
+    MatProgressSpinnerModule,
     AngularFireModule.initializeApp(environment.firebase), // imports firebase/app needed for everything
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
@@ -131,16 +141,19 @@ export class SentryErrorHandler implements ErrorHandler {
       languages: hljsLanguages
     }),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    StoreModule.forRoot({ auth: authReducer })
+    StoreModule.forRoot({ auth: authReducer }),
+    HttpClientModule,
   ],
   providers: [
     AuthService,
     AuthGuard,
     // { provide: FUNCTIONS_REGION, useValue: 'us-central1' },
-    // { provide: FUNCTIONS_ORIGIN, useValue: 'https://dev-kcv-backoffice.web.app' },
+    // { provide: FUNCTIONS_ORIGIN, useValue: '`http`s://dev-kcv-backoffice.web.app' },
     // { provide: FUNCTIONS_ORIGIN, useValue: 'http://localhost:5000' },
     { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 } },
-    { provide: ErrorHandler, useClass: SentryErrorHandler }
+    { provide: ErrorHandler, useClass: SentryErrorHandler },
+    LoaderService,
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

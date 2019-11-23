@@ -32,6 +32,9 @@
       <a class="navbar-item" routerLink="/payments" *ngIf="roles.includes('ADMIN')" (click)="toggleNavbar()">
         Betalingen
       </a>
+      <a class="navbar-item" routerLink="/users" *ngIf="roles.includes('ADMIN')" (click)="toggleNavbar()">
+        Gebruikers
+      </a>
     </div>
 
     <div class="navbar-end">

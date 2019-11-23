@@ -1,0 +1,15 @@
+<section class="section">
+    <div class="container">
+        <h1 class="title">Gebruikers</h1>
+        <div class="columns">
+            <div class="column">
+                <ngx-datatable class="material fullscreen" [rows]="this.users" [rowHeight]="rowHeight"
+                    [headerHeight]="headerHeight" [columnMode]="'force'">
+                    <ngx-datatable-column name="ID"></ngx-datatable-column>
+                    <ngx-datatable-column name="Naam" prop="displayName"></ngx-datatable-column>
+                    <ngx-datatable-column name="Email" prop="email"></ngx-datatable-column>
+                </ngx-datatable>
+            </div>
+        </div>
+    </div>
+</section>

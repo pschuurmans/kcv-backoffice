@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Registration } from 'src/app/models/registration';
 import { map } from 'rxjs/operators';
 import { TimestampPipe } from 'src/app/core/pipes/timestamp.pipe';
+import { LoaderService } from 'src/app/core/services/loader.service';
 
 @Component({
   selector: 'app-registrations-list',
@@ -27,13 +28,18 @@ export class RegistrationsListComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private afs: AngularFirestore,
-    private el: ElementRef
+    private el: ElementRef,
+    private loaderService: LoaderService
   ) { }
 
   ngOnInit() {
     this.eventId = this.route.snapshot.paramMap.get('eventId'); // Save url parameter in variable
+    this.loaderService.show();
     this.getRegistrations().subscribe(
-      (data: Registration[]) => this.registrations = data,
+      (data: Registration[]) => {
+        this.registrations = data;
+        this.loaderService.hide();
+      },
       err => console.log(err)
     );
   }
