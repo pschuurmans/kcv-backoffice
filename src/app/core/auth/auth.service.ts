@@ -43,6 +43,8 @@ export class AuthService {
   }
 
   createUserWithEmailAndPassword(credentials: EmailPasswordCredentials) {
+    this.loaderService.show();
+
     // Existing and future Auth states are now persisted in the current
     // session only. Closing the window would clear any existing state even if
     // a user forgets to sign out.
@@ -69,6 +71,7 @@ export class AuthService {
         });
         await dbAccessOnCall.toPromise();
         this.store.dispatch(login());
+        this.loaderService.hide();
         return this.router.navigate(['/my-profile']);
       })
       .catch(error => {
