@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Event } from '../../../../models/event';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
