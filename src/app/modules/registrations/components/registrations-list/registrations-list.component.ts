@@ -40,7 +40,10 @@ export class RegistrationsListComponent implements OnInit {
         this.registrations = data;
         this.loaderService.hide();
       },
-      err => console.log(err)
+      err => {
+        console.log(err);
+        this.loaderService.hide();
+      }
     );
   }
 
