@@ -6,6 +6,7 @@ service cloud.firestore {
 
     match /users/{user} {
       allow read, write: if isOwner(user) || isAdmin();
+      allow read, write: if "USERS" in get(/databases/$(database)/documents/access/$(request.auth.uid)).data.roles;
     }
 
     match /access/{userId} {
@@ -16,18 +17,22 @@ service cloud.firestore {
     match /registrations/{registration} {
       allow read, write: if isAdmin();
       allow read, write: if resource.data.event_id in get(/databases/$(database)/documents/access/$(request.auth.uid)).data.events;
+      allow read, write: if "REGISTRATIONS" in get(/databases/$(database)/documents/access/$(request.auth.uid)).data.roles;
     }
 
     match /events/{event} {
       allow read, write: if isAdmin();
+      allow read, write: if "EVENTS" in get(/databases/$(database)/documents/access/$(request.auth.uid)).data.roles;
     }
 
     match /persons/{person} {
       allow read, write: if isAdmin();
+      allow read, write: if "PERSONS" in get(/databases/$(database)/documents/access/$(request.auth.uid)).data.roles;
     }
 
     match /companies/{company} {
       allow read, write: if isAdmin();
+      allow read, write: if "COMPANIES" in get(/databases/$(database)/documents/access/$(request.auth.uid)).data.roles;
     }
 
     match /notifications/{notification} {
@@ -45,10 +50,12 @@ service cloud.firestore {
     
     match /payments/{payment} {
       allow read, write: if isAdmin();
+      allow read, write: if "PAYMENTS" in get(/databases/$(database)/documents/access/$(request.auth.uid)).data.roles;
     }
     
     match /molliepayments/{payment} {
       allow read, write: if isAdmin();
+      allow read, write: if "MOLLIEPAYMENTS" in get(/databases/$(database)/documents/access/$(request.auth.uid)).data.roles;
     }
 
     function isSignedIn() {
