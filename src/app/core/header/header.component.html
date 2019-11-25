@@ -17,22 +17,22 @@
       <a class="navbar-item" routerLink="/" (click)="toggleNavbar()">
         Home
       </a>
-      <a class="navbar-item" routerLink="/registrations" *ngIf="roles.includes('ADMIN')" (click)="toggleNavbar()">
+      <a class="navbar-item" routerLink="/registrations" *ngIf="roles.includes('ADMIN') || roles.includes('REGISTRATIONS')" (click)="toggleNavbar()">
         Registraties
       </a>
-      <a class="navbar-item" routerLink="/events" *ngIf="roles.includes('ADMIN')" (click)="toggleNavbar()">
+      <a class="navbar-item" routerLink="/events" *ngIf="roles.includes('ADMIN') || roles.includes('EVENTS')" (click)="toggleNavbar()">
         Evenementen
       </a>
-      <a class="navbar-item" routerLink="/persons" *ngIf="roles.includes('ADMIN')" (click)="toggleNavbar()">
+      <a class="navbar-item" routerLink="/persons" *ngIf="roles.includes('ADMIN') || roles.includes('PERSONS')" (click)="toggleNavbar()">
         Personen
       </a>
-      <a class="navbar-item" routerLink="/companies" *ngIf="roles.includes('ADMIN')" (click)="toggleNavbar()">
+      <a class="navbar-item" routerLink="/companies" *ngIf="roles.includes('ADMIN') || roles.includes('COMPANIES')" (click)="toggleNavbar()">
         Bedrijven
       </a>
-      <a class="navbar-item" routerLink="/payments" *ngIf="roles.includes('ADMIN')" (click)="toggleNavbar()">
+      <a class="navbar-item" routerLink="/payments" *ngIf="roles.includes('ADMIN') || roles.includes('PAYMENTS')" (click)="toggleNavbar()">
         Betalingen
       </a>
-      <a class="navbar-item" routerLink="/users" *ngIf="roles.includes('ADMIN')" (click)="toggleNavbar()">
+      <a class="navbar-item" routerLink="/users" *ngIf="roles.includes('ADMIN') || roles.includes('USERS')" (click)="toggleNavbar()">
         Gebruikers
       </a>
     </div>
