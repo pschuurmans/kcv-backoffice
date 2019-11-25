@@ -5,9 +5,9 @@
       Selecteer evenement
     </p>
     <div class="columns">
-      <div class="column" *ngFor="let doc of docs">
-        <a class="button is-light is-medium is-fullwidth" routerLink="/registrations/event/{{ doc.tag }}-{{ doc.year }}">
-          {{ doc.name }} {{ doc.year }}
+      <div class="column" *ngFor="let event of events">
+        <a class="button is-light is-medium is-fullwidth" routerLink="/registrations/event/{{ event }}">
+          {{ event }}
         </a>
       </div>
     </div>
