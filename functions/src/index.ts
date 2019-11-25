@@ -10,6 +10,11 @@
  */
 const glob = require("glob");
 const camelCase = require("camelcase");
+
+import * as functions from 'firebase-functions';
+import * as admin from 'firebase-admin';
+admin.initializeApp(functions.config().firebase);
+
 const files = glob.sync('./**/*.f.js', { cwd: __dirname, ignore: './node_modules/**'});
 for(let f=0,fl=files.length; f<fl; f++){
   const file = files[f];
