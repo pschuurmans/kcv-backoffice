@@ -62,6 +62,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoaderInterceptor } from './core/interceptors/loader.interceptor';
 import { HttpClientModule } from '@angular/common/http';
 import { UsersComponent } from './modules/users/containers/users/users.component';
+import { RegistrationsEditComponent } from './modules/registrations/components/registrations-edit/registrations-edit.component';
+import { RegistrationsFixComponent } from './modules/registrations/components/registrations-fix/registrations-fix.component';
 
 /**
  * Import every language you wish to highlight here
@@ -120,7 +122,9 @@ export class SentryErrorHandler implements ErrorHandler {
     PaymentStatusPipe,
     PaymentDetailsComponent,
     LoaderComponent,
-    UsersComponent
+    UsersComponent,
+    RegistrationsEditComponent,
+    RegistrationsFixComponent
   ],
   imports: [
     NgxDatatableModule,
