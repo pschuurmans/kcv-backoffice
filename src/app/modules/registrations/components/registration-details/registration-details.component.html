@@ -26,7 +26,7 @@
         - Kamergenoten: {{ (registration | async)?.rommmates }}<br />
         <strong>Overig:</strong><br />
         - Geboortedatum: {{ (registration | async)?.birthday }}<br />
-        - Eerste `eer: {{ (registration | async)?.first_time }}<br />
+        - Eerste keer: {{ (registration | async)?.first_time }}<br />
         - EHBO/BHV: {{ (registration | async)?.first_aid }}<br />
         - Bijzonderheden: {{ (registration | async)?.notes }}<br />
         <strong>Tijdstempel:</strong> {{ (registration | async)?.timestamp || '' | timestamp }}<br />
