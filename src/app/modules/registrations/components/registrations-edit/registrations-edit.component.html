@@ -1,0 +1,93 @@
+<section class="section">
+    <div class="container">
+        <div class="level">
+            <div class="level-left">
+                <p class="title">Registratie bewerken</p>
+            </div>
+        </div>
+
+        <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+            <div class="field">
+                <label class="label">Voornaam</label>
+                <div class="control">
+                    <input class="input" type="text" formControlName="first_name">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Achternaam</label>
+                <div class="control">
+                    <input class="input" type="text" formControlName="last_name">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Straat</label>
+                <div class="control">
+                    <input class="input" type="text" formControlName="street">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Huisnummer</label>
+                <div class="control">
+                    <input class="input" type="text" formControlName="house_nr">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Postcode</label>
+                <div class="control">
+                    <input class="input" type="text" formControlName="postal_code">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Stad</label>
+                <div class="control">
+                    <input class="input" type="text" formControlName="city">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Land</label>
+                <div class="control">
+                    <input class="input" type="text" formControlName="country">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Mobiel</label>
+                <div class="control">
+                    <input class="input" type="text" formControlName="mobile">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Telefoon</label>
+                <div class="control">
+                    <input class="input" type="text" formControlName="phone">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Email</label>
+                <div class="control">
+                    <input class="input" type="text" formControlName="email">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Kamergenoten</label>
+                <div class="control">
+                    <input class="input" type="text" formControlName="rommmates">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Bijzonderheden</label>
+                <div class="control">
+                    <input class="input" type="text" formControlName="notes">
+                </div>
+            </div>
+        
+            <br />
+            <button type="submit" class="button is-info">
+                <span class="icon">
+                    <i class="fas fa-save"></i>
+                </span>
+                <span>Opslaan</span>
+            </button>
+        </form>
+
+    </div>
+</section>

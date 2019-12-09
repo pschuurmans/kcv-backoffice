@@ -23,9 +23,10 @@
         - Taak: {{ (registration | async)?.job }}<br />
         - Track: {{ (registration | async)?.track }}<br />
         - Motivatie: {{ (registration | async)?.motivation }}<br />
+        - Kamergenoten: {{ (registration | async)?.rommmates }}<br />
         <strong>Overig:</strong><br />
         - Geboortedatum: {{ (registration | async)?.birthday }}<br />
-        - Eerste keer: {{ (registration | async)?.first_time }}<br />
+        - Eerste `eer: {{ (registration | async)?.first_time }}<br />
         - EHBO/BHV: {{ (registration | async)?.first_aid }}<br />
         - Bijzonderheden: {{ (registration | async)?.notes }}<br />
         <strong>Tijdstempel:</strong> {{ (registration | async)?.timestamp || '' | timestamp }}<br />

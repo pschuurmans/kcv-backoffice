@@ -25,4 +25,5 @@ export interface Registration {
     street: string;
     timestamp: firestore.Timestamp;
     track: string;
+    rommmates: string;
 }
