@@ -28,6 +28,7 @@ import { PaymentsComponent } from './modules/payments/containers/payments/paymen
 import { PaymentDetailsComponent } from './modules/payments/components/payment-details/payment-details.component';
 import { UsersComponent } from './modules/users/containers/users/users.component';
 import { RegistrationsEditComponent } from './modules/registrations/components/registrations-edit/registrations-edit.component';
+import { RegistrationsFixComponent } from './modules/registrations/components/registrations-fix/registrations-fix.component';
 
 
 const routes: Routes = [
@@ -36,6 +37,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'items', component: ItemsComponent, canActivate: [AuthGuard] },
+  { path: 'registrations/fix', component: RegistrationsFixComponent, canActivate: [AuthGuard] },
   { path: 'registrations/add', component: RegistrationAddComponent, canActivate: [AuthGuard] },
   { path: 'registrations/event/:eventId', component: RegistrationsListComponent, canActivate: [AuthGuard] },
   { path: 'registrations/:registrationId/edit', component: RegistrationsEditComponent, canActivate: [AuthGuard] },
