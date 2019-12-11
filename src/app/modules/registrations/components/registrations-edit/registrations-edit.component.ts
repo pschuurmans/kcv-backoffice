@@ -41,7 +41,7 @@ export class RegistrationsEditComponent implements OnInit {
     postal_code: new FormControl(''),
     street: new FormControl(''),
     track: new FormControl(''),
-    rommmates: new FormControl(''),
+    roommates: new FormControl(''),
   });
 
   constructor(
@@ -71,7 +71,7 @@ export class RegistrationsEditComponent implements OnInit {
       mobile: this.registrationForm.get('mobile').value,
       phone: this.registrationForm.get('phone').value,
       email: this.registrationForm.get('email').value,
-      rommmates: this.registrationForm.get('rommmates').value,
+      roommates: this.registrationForm.get('roommates').value,
       notes: this.registrationForm.get('notes').value,
       updated_at: firebase.firestore.FieldValue.serverTimestamp()
     })
