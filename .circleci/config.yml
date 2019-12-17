@@ -64,6 +64,9 @@ jobs:
                 paths:
                     - node_modules
             - run:
+                name: Insert version number
+                command: sed -i "s/circleCiBuildNr/{{ .Environment.CIRCLE_BUILD_NUM }}/g" src/app/containers/login/login.component.html
+            - run:
                 name: Linting
                 command: npm run lint
             - run:
