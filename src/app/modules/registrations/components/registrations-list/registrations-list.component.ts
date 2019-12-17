@@ -5,7 +5,8 @@ import { Registration } from 'src/app/models/registration';
 import { map } from 'rxjs/operators';
 import { TimestampPipe } from 'src/app/core/pipes/timestamp.pipe';
 import { LoaderService } from 'src/app/core/services/loader.service';
-import { ExportService } from '../../services/export.service';
+import * as FileSaver from 'file-saver';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-registrations-list',
@@ -32,7 +33,6 @@ export class RegistrationsListComponent implements OnInit {
     private afs: AngularFirestore,
     private el: ElementRef,
     private loaderService: LoaderService,
-    private exportService: ExportService
   ) { }
 
   ngOnInit() {
@@ -75,7 +75,22 @@ export class RegistrationsListComponent implements OnInit {
   }
 
   export() {
-    // this.exportToExcelService.exportExcel(this.registrations, 'registrations');
+    // this.exportService.exportAsExcelFile(this.registrations, 'registrations');
+    const fileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+    const fileExtension = '.xlsx';
+    exportExcel(this.registrations, 'registrations');
+
+    function exportExcel(jsonData: any[], fileName: string): void {
+      const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(jsonData);
+      const wb: XLSX.WorkBook = { Sheets: { data: ws }, SheetNames: ['data'] };
+      const excelBuffer: any = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+      saveExcelFile(excelBuffer, fileName);
+    }
+
+    function saveExcelFile(buffer: any, fileName: string): void {
+      const data: Blob = new Blob([buffer], {type: this.fileType});
+      FileSaver.saveAs(data, fileName + this.fileExtension);
+    }
   }
 
 }
