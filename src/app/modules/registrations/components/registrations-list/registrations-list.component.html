@@ -1,6 +1,13 @@
 <section class="section">
   <div class="container is-fluid">
-    <p class="title">Registraties van {{ this.eventId }} ({{ this.registrations.length }})</p>
+    <div class="level">
+      <div class="level-left">
+          <p class="title">Registraties van {{ this.eventId }} ({{ this.registrations.length }})</p>
+      </div>
+      <div class="level-right">
+        <button class="button is-link" (click)="export()">Export</button>
+      </div>
+    </div>
     <ngx-datatable class="material fullscreen" [rows]="this.registrations" [columns]="this.columns"
       [rowHeight]="rowHeight" [headerHeight]="headerHeight" [columnMode]="'force'" (activate)="onActivate($event)">
     </ngx-datatable>

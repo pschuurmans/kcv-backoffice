@@ -33,12 +33,14 @@
     "@sentry/browser": "^5.6.2",
     "@swimlane/ngx-datatable": "^15.0.2",
     "bulma": "^0.7.5",
+    "file-saver": "^2.0.2",
     "firebase": "^6.4.2",
     "firebase-functions": "^3.2.0",
     "highlight.js": "^9.15.10",
     "ngx-highlightjs": "^3.0.3",
     "rxjs": "~6.5.2",
     "tslib": "^1.9.0",
+    "xlsx": "^0.15.3",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
@@ -47,6 +49,7 @@
     "@angular/compiler-cli": "^8.2.3",
     "@angular/language-service": "^8.2.3",
     "@fortawesome/fontawesome-free": "^5.10.2",
+    "@types/file-saver": "^2.0.1",
     "@types/jasmine": "^3.4.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~12.7.2",
