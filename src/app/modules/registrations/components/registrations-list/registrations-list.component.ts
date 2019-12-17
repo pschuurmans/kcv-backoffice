@@ -5,7 +5,7 @@ import { Registration } from 'src/app/models/registration';
 import { map } from 'rxjs/operators';
 import { TimestampPipe } from 'src/app/core/pipes/timestamp.pipe';
 import { LoaderService } from 'src/app/core/services/loader.service';
-// import { ExportService as ExportToExcelService } from '../../services/export.service';
+import { ExportService } from '../../services/export.service';
 
 @Component({
   selector: 'app-registrations-list',
@@ -31,8 +31,8 @@ export class RegistrationsListComponent implements OnInit {
     private router: Router,
     private afs: AngularFirestore,
     private el: ElementRef,
-    // private exportToExcelService: ExportToExcelService,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
+    private exportService: ExportService
   ) { }
 
   ngOnInit() {
