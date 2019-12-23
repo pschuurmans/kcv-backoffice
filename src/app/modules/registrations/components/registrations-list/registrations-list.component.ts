@@ -5,8 +5,7 @@ import { Registration } from 'src/app/models/registration';
 import { map } from 'rxjs/operators';
 import { TimestampPipe } from 'src/app/core/pipes/timestamp.pipe';
 import { LoaderService } from 'src/app/core/services/loader.service';
-import * as FileSaver from 'file-saver';
-import * as XLSX from 'xlsx';
+import { ExcelService } from '../../services/excel.service';
 
 @Component({
   selector: 'app-registrations-list',
@@ -33,6 +32,7 @@ export class RegistrationsListComponent implements OnInit {
     private afs: AngularFirestore,
     private el: ElementRef,
     private loaderService: LoaderService,
+    private excelService: ExcelService
   ) { }
 
   ngOnInit() {
@@ -75,7 +75,7 @@ export class RegistrationsListComponent implements OnInit {
   }
 
   export() {
-    console.log('export');
+    this.excelService.exportAsExcelFile(this.registrations, 'registrations');
     // this.exportService.exportAsExcelFile(this.registrations, 'registrations');
     // const fileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
     // const fileExtension = '.xlsx';
