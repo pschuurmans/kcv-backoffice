@@ -10,24 +10,24 @@
             </div>
         </div>
 
-        <strong>Naam:</strong> {{ (registration | async)?.first_name }} {{ (registration | async)?.last_name }}<br />
-        <strong>Adres:</strong> {{ (registration | async)?.street }} {{ (registration | async)?.house_nr }}<br />
-        {{ (registration | async)?.postal_code }}  {{ (registration | async)?.city }}<br />
-        {{ (registration | async)?.country }}<br />
+        <strong>Naam:</strong> {{ (registration | async)?.personal.first_name }} {{ (registration | async)?.personal.last_name }}<br />
+        <strong>Adres:</strong> {{ (registration | async)?.address.street }} {{ (registration | async)?.address.house_nr }}<br />
+        {{ (registration | async)?.address.postal_code }}  {{ (registration | async)?.address.city }}<br />
+        {{ (registration | async)?.address.country }}<br />
         <strong>Contact:</strong> <br />
-        - {{ (registration | async)?.mobile }}<br />
-        - {{ (registration | async)?.phone }}<br />
-        - {{ (registration | async)?.email }}<br />
+        - {{ (registration | async)?.contact.mobile }}<br />
+        - {{ (registration | async)?.contact.phone }}<br />
+        - {{ (registration | async)?.contact.email }}<br />
         <strong>Evenement:</strong><br />
-        - Deelname: {{ (registration | async)?.participation }}<br />
-        - Taak: {{ (registration | async)?.job }}<br />
-        - Track: {{ (registration | async)?.track }}<br />
-        - Motivatie: {{ (registration | async)?.motivation }}<br />
-        - Kamergenoten: {{ (registration | async)?.roommates }}<br />
+        - Deelname: {{ (registration | async)?.event.tieners.participation }}<br />
+        - Taak: {{ (registration | async)?.event.tieners.job }}<br />
+        - Track: {{ (registration | async)?.event.tieners.track }}<br />
+        - Motivatie: {{ (registration | async)?.event.tieners.motivation }}<br />
+        - Kamergenoten: {{ (registration | async)?.event.tieners.roommates }}<br />
         <strong>Overig:</strong><br />
-        - Geboortedatum: {{ (registration | async)?.birthday }}<br />
-        - Eerste keer: {{ (registration | async)?.first_time }}<br />
-        - EHBO/BHV: {{ (registration | async)?.first_aid }}<br />
+        - Geboortedatum: {{ (registration | async)?.personal.birthday }}<br />
+        - Eerste keer: {{ (registration | async)?.event.tieners.first_time }}<br />
+        - EHBO/BHV: {{ (registration | async)?.event.first_aid }}<br />
         - Bijzonderheden: {{ (registration | async)?.notes }}<br />
         <strong>Tijdstempel:</strong> {{ (registration | async)?.timestamp || '' | timestamp }}<br />
     </div>
