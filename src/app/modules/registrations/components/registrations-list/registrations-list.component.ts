@@ -20,9 +20,9 @@ export class RegistrationsListComponent implements OnInit {
   registrations: Registration[] = [];
 
   columns = [
-    { name: 'Voornaam', prop: 'first_name' },
-    { name: 'Achternaam', prop: 'last_name' },
-    { name: 'Deelname', prop: 'participation' },
+    { name: 'Voornaam', prop: 'personal.first_name' },
+    { name: 'Achternaam', prop: 'personal.last_name' },
+    { name: 'Deelname', prop: 'event.tieners.participation' },
     { name: 'Geregistreerd', prop: 'timestamp', pipe: new TimestampPipe() }
   ];
 
@@ -51,7 +51,7 @@ export class RegistrationsListComponent implements OnInit {
   }
 
   getRegistrations() {
-    return this.afs.collection('registrations', ref => ref.where('event_id', '==', this.eventId)).snapshotChanges()
+    return this.afs.collection('registrations', ref => ref.where('event.event_id', '==', this.eventId)).snapshotChanges()
       // https://github.com/angular/angularfire2/issues/1973
       .pipe(
         map(actions => {
