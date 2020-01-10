@@ -40,7 +40,7 @@ exports = module.exports = functions.firestore
             first_aid: (data.EHBO !== undefined ? data.EHBO : ""),
             tieners: {
               first_time: (data['Eerste keer'] !== undefined ? data['Eerste keer'] : ""),
-              room_mates: (data.Kamergenoten !== undefined ? data.Kamergenoten : ""),
+              roommates: (data.Kamergenoten !== undefined ? data.Kamergenoten : ""),
               job: (data.Taak !== undefined ? data.Taak : ""),
               motivation: (data.Motivatie !== undefined ? data.Motivatie : ""),
               participation: (data.Deelname !== undefined ? data.Deelname : ""),

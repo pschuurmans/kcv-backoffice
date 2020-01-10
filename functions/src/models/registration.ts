@@ -29,7 +29,7 @@ export interface Registration {
         first_aid?: string;
         tieners?: {
             first_time?: string;
-            room_mates?: string;
+            roommates?: string;
             job?: string;
             motivation?: string;
             participation?: string;
