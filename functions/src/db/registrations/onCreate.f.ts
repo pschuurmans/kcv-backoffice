@@ -2,8 +2,8 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 try { admin.initializeApp(functions.config().firebase); } catch (e) { } // You do that because the admin SDK can only be initialized once.
 
-import { Registration } from "../../models/registration";
-import { Event, Price } from "../../models/event";
+// import { Registration } from "../../models/registration";
+// import { Event, Price } from "../../models/event";
 
 const mailgun = require("mailgun-js");
 const host = 'api.eu.mailgun.net';
@@ -19,35 +19,39 @@ const mollieClient = createMollieClient({ apiKey: functions.config().mollie.api_
 exports = module.exports = functions.firestore
     .document('registrations/{registrationId}')
     .onCreate(async (change: any, context: any) => {
-        const registration: Registration = change.data();
-        const event: Event = await readEvent(registration.event_id);
-        const registrationCost = event.price.find((price: Price) => price.participation === registration.participation);
+        // const registration: Registration = change.data();
+        // const event: Event = await readEvent(registration.event.event_id);
+        // let registrationCost: any;
+        
+        // if (registration.event.event_id !== undefined && (registration.event.event_id.includes("4u") || registration.event.event_id.includes("ht"))) {
+        //     registrationCost = event.price.find((price: Price) => price.participation === registration.event.tieners.participation);
+        // }
 
-        if (event.mollie) {
-            const payment = await createPayment(
-                registrationCost!.cost,
-                `${registration.first_name} ${registration.last_name} - ${event.name} ${event.year}`,
-                registration.email,
-                context.params.registrationId
-            );
+        // if (event.mollie) {
+        //     const payment = await createPayment(
+        //         registrationCost!.cost,
+        //         `${registration.personal.first_name} ${registration.personal.last_name} - ${event.name} ${event.year}`,
+        //         registration.contact.email,
+        //         context.params.registrationId
+        //     );
 
-            const data = {
-                from: 'Stichting KCV <backoffice@mail.kcv-net.nl>',
-                to: registration.email,
-                subject: `Bevestiging registratie ${event.name} ${event.year}`,
-                template: 'confirm-registration',
-                'h:X-Mailgun-Variables': JSON.stringify({
-                    event,
-                    registration,
-                    registrationCost: registrationCost!.cost,
-                    payment_link: payment._links.checkout.href
-                }),
-            };
+        //     const data = {
+        //         from: 'Stichting KCV <backoffice@mail.kcv-net.nl>',
+        //         to: registration.contact.email,
+        //         subject: `Bevestiging registratie ${event.name} ${event.year}`,
+        //         template: 'confirm-registration',
+        //         'h:X-Mailgun-Variables': JSON.stringify({
+        //             event,
+        //             registration,
+        //             registrationCost: registrationCost!.cost,
+        //             payment_link: payment._links.checkout.href
+        //         }),
+        //     };
 
-            mg.messages().send(data, function (error: any, body: any) {
-                console.log(body);
-            });
-        }
+        //     mg.messages().send(data, function (error: any, body: any) {
+        //         console.log(body);
+        //     });
+        // }
     });
 
 function readEvent(event_id: string) {

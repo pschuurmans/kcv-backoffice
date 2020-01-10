@@ -5,6 +5,7 @@ import { Registration } from 'src/app/models/registration';
 import { map } from 'rxjs/operators';
 import { TimestampPipe } from 'src/app/core/pipes/timestamp.pipe';
 import { LoaderService } from 'src/app/core/services/loader.service';
+// import { ExcelService } from '../../services/excel.service';
 
 @Component({
   selector: 'app-registrations-list',
@@ -30,7 +31,8 @@ export class RegistrationsListComponent implements OnInit {
     private router: Router,
     private afs: AngularFirestore,
     private el: ElementRef,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
+    // private excelService: ExcelService
   ) { }
 
   ngOnInit() {
@@ -70,6 +72,26 @@ export class RegistrationsListComponent implements OnInit {
 
   showRegistration(id: number) {
     this.router.navigate(['/registrations/' + id]);
+  }
+
+  export() {
+    // this.excelService.exportAsExcelFile(this.registrations, 'registrations');
+    // this.exportService.exportAsExcelFile(this.registrations, 'registrations');
+    // const fileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+    // const fileExtension = '.xlsx';
+    // exportExcel(this.registrations, 'registrations');
+
+    // function exportExcel(jsonData: any[], fileName: string): void {
+    //   const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(jsonData);
+    //   const wb: XLSX.WorkBook = { Sheets: { data: ws }, SheetNames: ['data'] };
+    //   const excelBuffer: any = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+    //   saveExcelFile(excelBuffer, fileName);
+    // }
+
+    // function saveExcelFile(buffer: any, fileName: string): void {
+    //   const data: Blob = new Blob([buffer], {type: fileType});
+    //   FileSaver.saveAs(data, fileName + fileExtension);
+    // }
   }
 
 }
