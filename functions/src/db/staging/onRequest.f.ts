@@ -6,7 +6,9 @@ exports = module.exports = functions.https.onRequest((req: any, res: any) => {
     const body = req.body;
     const query = req.query;
 
-    admin.firestore().collection('staging').add({...body, ...query})
-        .then(ref => res.send({ id: ref.id, ...body, ...query }))
-        .catch(err => res.send(err));
+    // admin.firestore().collection('staging').add({...body, ...query})
+    //     .then(ref => res.send({ id: ref.id, ...body, ...query }))
+    //     .catch(err => res.send(err));
+    console.log(body);
+    console.log(query);
 });
