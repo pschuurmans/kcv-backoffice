@@ -5,6 +5,7 @@ try { admin.initializeApp(functions.config().firebase); } catch (e) { } // You d
 import { EventContext } from "firebase-functions";
 import { DocumentSnapshot } from "firebase-functions/lib/providers/firestore";
 import { Event, Price } from "../../models/event";
+import { firestore } from "firebase-admin";
 
 const mailgun = require("mailgun-js");
 const host = 'api.eu.mailgun.net';
@@ -19,6 +20,8 @@ exports = module.exports = functions.firestore
     .onCreate(async (snapshot: DocumentSnapshot, context: EventContext) => {
         const registration: any = snapshot.data();
         const event: Event = await readEvent(registration.event.event_id);
+
+        await createPayment(snapshot.id);
 
         if (registration.event.event_id !== undefined && (registration.event.event_id.includes("4u") || registration.event.event_id.includes("ht"))) {
             const registrationCost = event.price.find((price: Price) => price.participation === registration.event.tieners.participation);
@@ -45,6 +48,15 @@ exports = module.exports = functions.firestore
         }
 
     });
+
+function createPayment(registrationId: string) {
+    return admin.firestore().doc('payments/' + registrationId).set({
+        status: "open",
+        timestamp: firestore.Timestamp.now(),
+    })
+    .then((ref: any) => console.log(ref))
+    .catch((err: any) => console.error(err));
+}
 
 function readEvent(event_id: string) {
     const tag = event_id.split(/-/)[0];

@@ -1,61 +1,76 @@
 <section class="section">
     <div class="container" *ngIf="!isLoading">
-        <p class="title">Status betaling</p>
-        <p class="subtitle">
-            Betaal id: {{ this.paymentId }}
+        <p class="has-text-centered i">
+            <img src="../../../../../assets/kcv-logo.png" alt="kcv-logo" style="width: 130px; margin-bottom: 30px;"/>
         </p>
-        <div class="columns">
-            <div class="column" *ngIf="this.data!==undefined">
-                <article class="message is-success" *ngIf="this.data.status==='paid'">
-                    <div class="message-header">
-                        <p>Betaald</p>
-                    </div>
-                    <div class="message-body">
-                        <strong>Bedrag:</strong> € {{ this.data.amount.value }}<br />
-                        <strong>Beschrijving:</strong> {{ this.data.description }}<br />
-                        <strong>Betaald op:</strong> {{ this.data.paidAt | date }}
-                    </div>
-                </article>
-                <article class="message is-info" *ngIf="this.data.status==='open'">
-                    <div class="message-header">
-                        <p>Open</p>
-                    </div>
-                    <div class="message-body">
-                        <strong>Bedrag:</strong> € {{ this.data.amount.value }}<br />
-                        <strong>Beschrijving:</strong> {{ this.data.description }}<br />
-                        <strong>Betaald op:</strong> {{ this.data.paidAt | date }}
-                    </div>
-                </article>
-                <article class="message is-link" *ngIf="this.data.status==='pending'">
-                    <div class="message-header">
-                        <p>In afwachting</p>
-                    </div>
-                    <div class="message-body">
-                        <strong>Bedrag:</strong> € {{ this.data.amount.value }}<br />
-                        <strong>Beschrijving:</strong> {{ this.data.description }}<br />
-                        <strong>Betaald op:</strong> {{ this.data.paidAt | date }}
-                    </div>
-                </article>
-                <article class="message is-danger" *ngIf="this.data.status==='failed'">
-                    <div class="message-header">
-                        <p>Mislukt</p>
-                    </div>
-                    <div class="message-body">
-                        <strong>Bedrag:</strong> € {{ this.data.amount.value }}<br />
-                        <strong>Beschrijving:</strong> {{ this.data.description }}<br />
-                        <strong>Betaald op:</strong> {{ this.data.paidAt | date }}
-                    </div>
-                </article>
-            </div>
-            <div class="column" *ngIf="this.data===undefined">
-                <article class="message is-warning">
-                    <div class="message-header">
-                        <p>Niet gevonden</p>
-                    </div>
-                    <div class="message-body">
-                        De betaling met kenmerk <strong>{{ this.paymentId}}</strong> is niet gevonden. 
-                    </div>
-                </article>
+        <div class="box">
+            <p class="title">Status betaling</p>
+            <p class="subtitle">
+                Betalingskenmerk: {{ this.paymentId }}
+            </p>
+            <div class="columns">
+                <div class="column" *ngIf="this.data!==undefined">
+                    <article class="message is-info" *ngIf="this.data.status==='open'">
+                        <div class="message-header">
+                            <p>Open</p>
+                        </div>
+                        <div class="message-body">
+                            <strong>Bedrag:</strong> € {{ this.data.mollie.amount.value }}<br />
+                            <strong>Beschrijving:</strong> {{ this.data.mollie.description }}<br />
+                            <strong>Betaald op:</strong> {{ this.data.timestamp | timestamp }}
+                        </div>
+                    </article>
+                    <article class="message is-success" *ngIf="this.data.status==='paid'">
+                        <div class="message-header">
+                            <p>Betaald</p>
+                        </div>
+                        <div class="message-body">
+                            <strong>Bedrag:</strong> € {{ this.data.mollie.amount.value }}<br />
+                            <strong>Beschrijving:</strong> {{ this.data.mollie.description }}<br />
+                            <strong>Betaald op:</strong> {{ this.data.timestamp | timestamp }}
+                        </div>
+                    </article>
+                    <article class="message is-warning" *ngIf="this.data.status==='expired'">
+                        <div class="message-header">
+                            <p>Verlopen</p>
+                        </div>
+                        <div class="message-body">
+                            <strong>Bedrag:</strong> € {{ this.data.mollie.amount.value }}<br />
+                            <strong>Beschrijving:</strong> {{ this.data.mollie.description }}<br />
+                            <strong>Betaald op:</strong> {{ this.data.timestamp | timestamp }}
+                        </div>
+                    </article>
+                    <article class="message is-danger" *ngIf="this.data.status==='failed'">
+                        <div class="message-header">
+                            <p>Mislukt</p>
+                        </div>
+                        <div class="message-body">
+                            <strong>Bedrag:</strong> € {{ this.data.mollie.amount.value }}<br />
+                            <strong>Beschrijving:</strong> {{ this.data.mollie.description }}<br />
+                            <strong>Betaald op:</strong> {{ this.data.timestamp | timestamp }}
+                        </div>
+                    </article>
+                    <article class="message is-danger" *ngIf="this.data.status==='canceled'">
+                        <div class="message-header">
+                            <p>Geannuleerd</p>
+                        </div>
+                        <div class="message-body">
+                            <strong>Bedrag:</strong> € {{ this.data.mollie.amount.value }}<br />
+                            <strong>Beschrijving:</strong> {{ this.data.mollie.description }}<br />
+                            <strong>Betaald op:</strong> {{ this.data.timestamp | timestamp }}
+                        </div>
+                    </article>
+                </div>
+                <div class="column" *ngIf="this.data===undefined">
+                    <article class="message is-warning">
+                        <div class="message-header">
+                            <p>Niet gevonden</p>
+                        </div>
+                        <div class="message-body">
+                            De betaling met kenmerk <strong>{{ this.paymentId}}</strong> is niet gevonden. 
+                        </div>
+                    </article>
+                </div>
             </div>
         </div>
     </div>
