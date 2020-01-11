@@ -11,9 +11,9 @@
                         <p>Betaald</p>
                     </div>
                     <div class="message-body">
-                        <strong>Bedrag:</strong> € {{ this.data.amount.value }}<br />
-                        <strong>Beschrijving:</strong> {{ this.data.description }}<br />
-                        <strong>Betaald op:</strong> {{ this.data.paidAt | date }}
+                        <strong>Bedrag:</strong> € {{ this.data.mollie.amount.value }}<br />
+                        <strong>Beschrijving:</strong> {{ this.data.mollie.description }}<br />
+                        <strong>Betaald op:</strong> {{ this.data.timestamp | date }}
                     </div>
                 </article>
                 <article class="message is-info" *ngIf="this.data.status==='open'">
@@ -21,9 +21,9 @@
                         <p>Open</p>
                     </div>
                     <div class="message-body">
-                        <strong>Bedrag:</strong> € {{ this.data.amount.value }}<br />
-                        <strong>Beschrijving:</strong> {{ this.data.description }}<br />
-                        <strong>Betaald op:</strong> {{ this.data.paidAt | date }}
+                        <strong>Bedrag:</strong> € {{ this.data.mollie.amount.value }}<br />
+                        <strong>Beschrijving:</strong> {{ this.data.mollie.description }}<br />
+                        <strong>Betaald op:</strong> {{ this.data.timestamp | date }}
                     </div>
                 </article>
                 <article class="message is-link" *ngIf="this.data.status==='pending'">
@@ -31,9 +31,9 @@
                         <p>In afwachting</p>
                     </div>
                     <div class="message-body">
-                        <strong>Bedrag:</strong> € {{ this.data.amount.value }}<br />
-                        <strong>Beschrijving:</strong> {{ this.data.description }}<br />
-                        <strong>Betaald op:</strong> {{ this.data.paidAt | date }}
+                        <strong>Bedrag:</strong> € {{ this.data.mollie.amount.value }}<br />
+                        <strong>Beschrijving:</strong> {{ this.data.mollie.description }}<br />
+                        <strong>Betaald op:</strong> {{ this.data.timestamp | date }}
                     </div>
                 </article>
                 <article class="message is-danger" *ngIf="this.data.status==='failed'">
@@ -41,9 +41,9 @@
                         <p>Mislukt</p>
                     </div>
                     <div class="message-body">
-                        <strong>Bedrag:</strong> € {{ this.data.amount.value }}<br />
-                        <strong>Beschrijving:</strong> {{ this.data.description }}<br />
-                        <strong>Betaald op:</strong> {{ this.data.paidAt | date }}
+                        <strong>Bedrag:</strong> € {{ this.data.mollie.amount.value }}<br />
+                        <strong>Beschrijving:</strong> {{ this.data.mollie.description }}<br />
+                        <strong>Betaald op:</strong> {{ this.data.timestamp | date }}
                     </div>
                 </article>
             </div>
