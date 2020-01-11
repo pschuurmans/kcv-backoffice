@@ -45,6 +45,7 @@ exports = module.exports = functions.firestore
                         registrationCost: registrationCost!.cost,
                         payment_link: payment._links.checkout.href
                     }),
+                    'h:Reply-To': 'info@kcv-net.nl'
                 };
     
                 mg.messages().send(data, function (error: any, body: any) {
