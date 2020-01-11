@@ -13,30 +13,41 @@ exports = module.exports = functions.https.onRequest(async (req: Request, res: R
     let registration_id: string;
     let registration: any;
     let event: any;
+    let payment: any;
 
     registration_id = req.query.registration_id;
 
     registration_id === undefined ? res.send("Registratie is niet gevonden.") : null;
     registration_id === "" ? res.send("Registratie is ongeldig.") : null;
-     
-    await admin.firestore().doc('registrations/' + registration_id).get()
+
+    await admin.firestore().doc('payments/' + registration_id).get()
+        .then((snapshot: DocumentSnapshot) => {
+            payment = snapshot.data();
+        })
+        .catch((err: any) => console.error(err));
+    
+    if (payment.status !== "paid") {
+        await admin.firestore().doc('registrations/' + registration_id).get()
         .then((snapshot: DocumentSnapshot) => {
             registration = snapshot.data();
         })
         .catch((err: any) => console.error(err));
-
-    event = await readEvent(registration.event.event_id);
-
-    const registrationCost = event.price.find((price: Price) => price.participation === registration.event.tieners.participation);
-
-    const payment = await createPayment(
-        registrationCost!.cost,
-        `${registration.personal.first_name} ${registration.personal.last_name} - ${event.name} ${event.year}`,
-        registration.contact.email,
-        registration_id
-    );
-
-    res.redirect(payment._links.checkout.href);
+        
+        event = await readEvent(registration.event.event_id);
+        
+        const registrationCost = event.price.find((price: Price) => price.participation === registration.event.tieners.participation);
+        
+        const molliePayment = await createPayment(
+            registrationCost!.cost,
+            `${registration.personal.first_name} ${registration.personal.last_name} - ${event.name} ${event.year}`,
+            registration.contact.email,
+            registration_id
+            );
+            
+            res.redirect(molliePayment._links.checkout.href);
+    } else {
+        res.redirect("https://www.4u-hightime.nl/bedankt");
+    }
 });
 
 function readEvent(event_id: string) {
