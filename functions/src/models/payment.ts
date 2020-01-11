@@ -1,10 +1,8 @@
 import { firestore } from 'firebase/app';
-import { Registration } from './registration';
 
 export interface Event {
     status: Status;
     timestamp: firestore.Timestamp;
-    registration: Registration;
     mollie?: any;
 }
 
