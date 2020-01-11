@@ -14,11 +14,6 @@
                         <div class="message-header">
                             <p>Open</p>
                         </div>
-                        <div class="message-body">
-                            <strong>Bedrag:</strong> € {{ this.data.mollie.amount.value }}<br />
-                            <strong>Beschrijving:</strong> {{ this.data.mollie.description }}<br />
-                            <strong>Tijdstempel:</strong> {{ this.data.timestamp | timestamp }}
-                        </div>
                     </article>
                     <article class="message is-success" *ngIf="this.data.status==='paid'">
                         <div class="message-header">
