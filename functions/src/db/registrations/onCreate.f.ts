@@ -5,7 +5,6 @@ try { admin.initializeApp(functions.config().firebase); } catch (e) { } // You d
 import { EventContext } from "firebase-functions";
 import { DocumentSnapshot } from "firebase-functions/lib/providers/firestore";
 import { Event, Price } from "../../models/event";
-import { Registration } from "../../models/registration";
 import { firestore } from "firebase-admin";
 
 const mailgun = require("mailgun-js");
