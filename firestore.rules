@@ -51,6 +51,7 @@ service cloud.firestore {
     match /payments/{payment} {
       allow read, write: if isAdmin();
       allow read, write: if "PAYMENTS" in get(/databases/$(database)/documents/access/$(request.auth.uid)).data.roles;
+      allow read;
     }
     
     match /molliepayments/{payment} {
