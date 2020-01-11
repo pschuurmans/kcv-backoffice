@@ -130,10 +130,16 @@
                                         <td class="content-block"
                                             style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;"
                                             valign="top">
-                                            Beste {{ registration.first_name }} {{ registration.last_name }},<br />
+                                            Beste {{ registration.personal.first_name }} {{ registration.personal.last_name }},<br />
                                             <br />
                                             Uw registratie voor het evenement {{ event.name }} {{ event.year }} is
-                                            verwerkt. De kosten hiervan bedragen € {{ registrationCost }}.
+                                            verwerkt. De kosten hiervan als {{ registration.event.tieners.participation }} bedragen € {{ registrationCost }}. Dit kunt u overmaken naar:
+                                            <br />
+                                            <br /><b>Bankrekening: </b>NL32 INGB 0009 2336 50
+                                            <br /><b>t.n.v.:</b> Stichting KCV
+                                            <br /><b>o.v.v.:</b> {{ registration.personal.first_name }} {{ registration.personal.last_name }} {{ event.tag }} {{ event.year }}
+                                            <br /><br />
+                                            Of betaal snel en veilig via iDeal:
                                         </td>
                                     </tr>
                                     <tr
@@ -143,7 +149,7 @@
                                             style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;"
                                             valign="top">
                                             <a href="{{ payment_link }}" class="btn-primary" itemprop="url"
-                                                style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; color: #FFF; text-decoration: none; line-height: 2em; font-weight: bold; text-align: center; cursor: pointer; display: inline-block; border-radius: 5px; text-transform: capitalize; background-color: #348eda; margin: 0; border-color: #348eda; border-style: solid; border-width: 10px 20px;">Klik hier om te betalen</a>
+                                                style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; color: #FFF; text-decoration: none; line-height: 2em; font-weight: bold; text-align: center; cursor: pointer; display: inline-block; border-radius: 5px; text-transform: capitalize; background-color: #348eda; margin: 0; border-color: #348eda; border-style: solid; border-width: 10px 20px;">Betaal via iDeal</a>
                                         </td>
                                     </tr>
                                     <tr
