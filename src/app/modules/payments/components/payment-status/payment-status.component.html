@@ -6,16 +6,6 @@
         </p>
         <div class="columns">
             <div class="column" *ngIf="this.data!==undefined">
-                <article class="message is-success" *ngIf="this.data.status==='paid'">
-                    <div class="message-header">
-                        <p>Betaald</p>
-                    </div>
-                    <div class="message-body">
-                        <strong>Bedrag:</strong> € {{ this.data.mollie.amount.value }}<br />
-                        <strong>Beschrijving:</strong> {{ this.data.mollie.description }}<br />
-                        <strong>Betaald op:</strong> {{ this.data.timestamp | date }}
-                    </div>
-                </article>
                 <article class="message is-info" *ngIf="this.data.status==='open'">
                     <div class="message-header">
                         <p>Open</p>
@@ -23,17 +13,27 @@
                     <div class="message-body">
                         <strong>Bedrag:</strong> € {{ this.data.mollie.amount.value }}<br />
                         <strong>Beschrijving:</strong> {{ this.data.mollie.description }}<br />
-                        <strong>Betaald op:</strong> {{ this.data.timestamp | date }}
+                        <strong>Betaald op:</strong> {{ this.data.timestamp | timestamp }}
                     </div>
                 </article>
-                <article class="message is-link" *ngIf="this.data.status==='pending'">
+                <article class="message is-success" *ngIf="this.data.status==='paid'">
                     <div class="message-header">
-                        <p>In afwachting</p>
+                        <p>Betaald</p>
                     </div>
                     <div class="message-body">
                         <strong>Bedrag:</strong> € {{ this.data.mollie.amount.value }}<br />
                         <strong>Beschrijving:</strong> {{ this.data.mollie.description }}<br />
-                        <strong>Betaald op:</strong> {{ this.data.timestamp | date }}
+                        <strong>Betaald op:</strong> {{ this.data.timestamp | timestamp }}
+                    </div>
+                </article>
+                <article class="message is-warning" *ngIf="this.data.status==='expired'">
+                    <div class="message-header">
+                        <p>Verlopen</p>
+                    </div>
+                    <div class="message-body">
+                        <strong>Bedrag:</strong> € {{ this.data.mollie.amount.value }}<br />
+                        <strong>Beschrijving:</strong> {{ this.data.mollie.description }}<br />
+                        <strong>Betaald op:</strong> {{ this.data.timestamp | timestamp }}
                     </div>
                 </article>
                 <article class="message is-danger" *ngIf="this.data.status==='failed'">
@@ -43,7 +43,17 @@
                     <div class="message-body">
                         <strong>Bedrag:</strong> € {{ this.data.mollie.amount.value }}<br />
                         <strong>Beschrijving:</strong> {{ this.data.mollie.description }}<br />
-                        <strong>Betaald op:</strong> {{ this.data.timestamp | date }}
+                        <strong>Betaald op:</strong> {{ this.data.timestamp | timestamp }}
+                    </div>
+                </article>
+                <article class="message is-danger" *ngIf="this.data.status==='canceled'">
+                    <div class="message-header">
+                        <p>Geannuleerd</p>
+                    </div>
+                    <div class="message-body">
+                        <strong>Bedrag:</strong> € {{ this.data.mollie.amount.value }}<br />
+                        <strong>Beschrijving:</strong> {{ this.data.mollie.description }}<br />
+                        <strong>Betaald op:</strong> {{ this.data.timestamp | timestamp }}
                     </div>
                 </article>
             </div>
