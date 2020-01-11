@@ -22,7 +22,7 @@ exports = module.exports = functions.firestore
         const registration: any = snapshot.data();
         const event: Event = await readEvent(registration.event.event_id);
 
-        await createPayment(snapshot.id, registration);
+        await createPayment(snapshot.id);
 
         if (registration.event.event_id !== undefined && (registration.event.event_id.includes("4u") || registration.event.event_id.includes("ht"))) {
             const registrationCost = event.price.find((price: Price) => price.participation === registration.event.tieners.participation);
@@ -50,11 +50,10 @@ exports = module.exports = functions.firestore
 
     });
 
-function createPayment(registrationId: string, registration: Registration) {
+function createPayment(registrationId: string) {
     return admin.firestore().doc('payments/' + registrationId).set({
         status: "open",
         timestamp: firestore.Timestamp.now(),
-        registration: registration
     })
     .then((ref: any) => console.log(ref))
     .catch((err: any) => console.error(err));
