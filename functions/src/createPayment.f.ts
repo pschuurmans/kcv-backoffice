@@ -46,7 +46,7 @@ exports = module.exports = functions.https.onRequest(async (req: Request, res: R
             
             res.redirect(molliePayment._links.checkout.href);
     } else {
-        res.redirect("https://www.4u-hightime.nl/bedankt");
+        res.redirect(functions.config().function_url.root = '/payments/status/' + registration_id);
     }
 });
 
@@ -82,7 +82,7 @@ function createPayment(price: string, description: string, billingEmail: string,
             value: price
         },
         description: description,
-        redirectUrl: `https://www.4u-hightime.nl/bedankt`,
+        redirectUrl: functions.config().function_url.root + '/payments/status/' + registrationId,
         webhookUrl: functions.config().mollie.paymentwebhookurl,
         metadata: {
             registration_id: registrationId,
