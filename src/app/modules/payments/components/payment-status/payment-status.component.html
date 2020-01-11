@@ -1,8 +1,12 @@
 <section class="section">
     <div class="container" *ngIf="!isLoading">
+        <p class="has-text-centered">
+            <img src="../../../../../assets/kcv-logo.png" alt="kcv-logo" style="width: 130px; margin-bottom: 30px;"/>
+        </p>
+        <div class="box">
         <p class="title">Status betaling</p>
         <p class="subtitle">
-            Betaal id: {{ this.paymentId }}
+            Betalingskenmerk: {{ this.paymentId }}
         </p>
         <div class="columns">
             <div class="column" *ngIf="this.data!==undefined">
@@ -67,6 +71,7 @@
                     </div>
                 </article>
             </div>
+        </div>
         </div>
     </div>
     <div class="container" *ngIf="isLoading">
