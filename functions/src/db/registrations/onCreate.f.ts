@@ -14,9 +14,6 @@ const mg = mailgun({
     host: host
 });
 
-const { createMollieClient } = require('@mollie/api-client');
-const mollieClient = createMollieClient({ apiKey: functions.config().mollie.api_key });
-
 exports = module.exports = functions.firestore
     .document('registrations/{registrationId}')
     .onCreate(async (snapshot: DocumentSnapshot, context: EventContext) => {
@@ -27,13 +24,6 @@ exports = module.exports = functions.firestore
             const registrationCost = event.price.find((price: Price) => price.participation === registration.event.tieners.participation);
             
             if (event.mollie) {
-                const payment = await createPayment(
-                    registrationCost!.cost,
-                    `${registration.personal.first_name} ${registration.personal.last_name} - ${event.name} ${event.year}`,
-                    registration.contact.email,
-                    context.params.registrationId
-                );
-    
                 const data = {
                     from: 'Stichting KCV <backoffice@mail.kcv-net.nl>',
                     to: registration.contact.email,
@@ -43,7 +33,7 @@ exports = module.exports = functions.firestore
                         event,
                         registration,
                         registrationCost: registrationCost!.cost,
-                        payment_link: payment._links.checkout.href
+                        payment_link: functions.config().function_url.createpayment + "?registration_id=" + snapshot.id
                     }),
                     'h:Reply-To': 'info@kcv-net.nl'
                 };
@@ -60,14 +50,6 @@ function readEvent(event_id: string) {
     const tag = event_id.split(/-/)[0];
     const year = event_id.split(/-/)[1];
 
-    // let query = admin.firestore().collection('events')
-    // query = query.where('tag', '==', tag);
-    // query = query.where('year', '==', year);
-    // const data = query.get().then((doc: any) => {
-    //     const event = doc.data();
-    //     return event;
-    // });
-    // return data;
     return admin.firestore()
         .collection('events')
         .where('tag', '==', tag)
@@ -86,35 +68,5 @@ function readEvent(event_id: string) {
         })
         .catch((err: any) => {
             console.log('Error getting documents', err);
-        });
-
-    // .then((doc: any) => {
-    //     const event = doc.data();
-    //     return event;
-    // });
-}
-
-function createPayment(price: string, description: string, billingEmail: string, registrationId: string) {
-    return mollieClient.payments.create({
-        amount: {
-            currency: 'EUR',
-            value: price
-        },
-        description: description,
-        redirectUrl: `https://www.4u-hightime.nl/bedankt`,
-        webhookUrl: functions.config().mollie.paymentwebhookurl,
-        metadata: {
-            registration_id: registrationId,
-        },
-        billingEmail: billingEmail,
-        locale: 'nl_NL',
-    })
-        .then((payment: any) => {
-            // Forward the customer to the payment.getCheckoutUrl()
-            return payment
-        })
-        .catch((error: any) => {
-            // Handle the error
-            console.error(error)
         });
 }
