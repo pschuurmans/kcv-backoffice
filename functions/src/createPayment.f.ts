@@ -26,7 +26,9 @@ exports = module.exports = functions.https.onRequest(async (req: Request, res: R
         })
         .catch((err: any) => console.error(err));
     
-    if (payment.status !== "paid") {
+    if (payment.status === "paid") {
+        res.redirect(functions.config().function_url.root + '/payments/status/' + registration_id);
+    } else {
         await admin.firestore().doc('registrations/' + registration_id).get()
         .then((snapshot: DocumentSnapshot) => {
             registration = snapshot.data();
@@ -45,8 +47,6 @@ exports = module.exports = functions.https.onRequest(async (req: Request, res: R
             );
             
             res.redirect(molliePayment._links.checkout.href);
-    } else {
-        res.redirect(functions.config().function_url.root = '/payments/status/' + registration_id);
     }
 });
 
