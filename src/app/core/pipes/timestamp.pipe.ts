@@ -6,8 +6,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class TimestampPipe implements PipeTransform {
 
   transform(value: any, ...args: any[]): any {
-    const seconds = value.seconds * 1000; // Convert timestamp to date
-    return new Date(seconds).toLocaleString('nl-NL');
+    if (value) {
+      const seconds = value.seconds * 1000; // Convert timestamp to date
+      return new Date(seconds).toLocaleString('nl-NL');
+    }
   }
 
 }

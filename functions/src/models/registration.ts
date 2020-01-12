@@ -7,14 +7,14 @@ export interface Registration {
         last_name: string;
         birthday?: string | firestore.Timestamp;
         sex?: string;
-    },
+    };
     address: {
         street: string;
         house_nr?: string;
         postal_code: string;
         city: string;
         country?: string;
-    },
+    };
     contact: {
         email: string;
         email2?: string;
@@ -22,11 +22,32 @@ export interface Registration {
         phone2?: string;
         mobile?: string;
         contact_preferences?: string;
-    },
+    };
     timestamp?: firestore.Timestamp;
     event: {
         event_id: string;
         first_aid?: string;
+        toerustingsweekend?: {
+            participation: string;
+            extra_persons: string;
+            roommate1: string;
+            participation_roommate1: string;
+            roommate2: string;
+            participation_roommate2: string;
+            roommate3: string;
+            participation_roommate3: string;
+            roommate4: string;
+            participation_roommate4: string;
+            roommate5: string;
+            participation_roommate5: string;
+            roommate6: string;
+            participation_roommate6: string;
+            heard_about_us: string;
+            privacy: string;
+            photo_permission: string;
+            keep_updated: string;
+            signed: string;
+        };
         tieners?: {
             first_time?: string;
             roommates?: string;
@@ -71,7 +92,7 @@ export interface Registration {
         mollie_customer_id?: string;
         mollie_payment_mode?: string;
         mollie_cancelled_payment_id?: string;
-    }
+    };
     notes?: string;
     raw_data: any;
 }

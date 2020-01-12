@@ -6,6 +6,11 @@
             </div>
         </div>
 
-        <strong>ID:</strong> {{ (payment | async)?.paymentId }}<br />
+        <strong>Status:</strong> {{ payment?.status }}<br />
+        <strong>Tijdstempel:</strong> {{ payment?.timestamp | timestamp }}<br />
+        <hr />
+        <h1 class="subtitle">Mollie</h1>
+        <strong>Bedrag:</strong> €{{ payment?.mollie?.amount.value }}<br />
+        <strong>Beschrijving:</strong> {{ payment?.mollie?.description }}<br />
     </div>
 </section>
