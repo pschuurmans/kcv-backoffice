@@ -18,13 +18,14 @@ export class PaymentDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
+    const paymentId = this.route.snapshot.paramMap.get('paymentId');
+    this.getPayment(paymentId);
   }
 
-  getPerson() {
-    const personId = this.route.snapshot.paramMap.get('personId');
-    this.afs.collection('payments').doc(personId).valueChanges()
+  getPayment(id: string) {
+    this.afs.collection('payments').doc(id).valueChanges()
       .subscribe(
-        data => console.log(data),
+        (data: Payment) => this.payment = data,
         err => console.log(err)
       );
   }

@@ -6,7 +6,6 @@ import { Payment } from 'src/app/models/payment';
 import { PaymentStatusPipe } from 'src/app/core/pipes/payment-status.pipe';
 import { PaymentAmountPipe } from 'src/app/core/pipes/payment-amount.pipe';
 import { TimestampPipe } from 'src/app/core/pipes/timestamp.pipe';
-import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-payments',
@@ -20,10 +19,9 @@ export class PaymentsComponent implements OnInit {
   payments: Payment[] = [];
 
   columns = [
-    { name: 'Bedrag', prop: 'amount', pipe: new PaymentAmountPipe(), maxWidth: 100 },
-    { name: 'Status', pipe: new PaymentStatusPipe(), maxWidth: 150 },
-    { name: 'Beschrijving', prop: 'description' },
-    { name: 'Datum', prop: 'createdAt', pipe: new DatePipe('nl-NL') },
+    { name: 'ID', prop: 'id' },
+    { name: 'Status', pipe: new PaymentStatusPipe() },
+    { name: 'Datum', prop: 'timestamp', pipe: new TimestampPipe() },
   ];
 
   constructor(
@@ -32,13 +30,13 @@ export class PaymentsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getCompanies().subscribe(
+    this.getPayments().subscribe(
       (data: Payment[]) => this.payments = data,
       err => console.log(err)
     );
   }
 
-  getCompanies() {
+  getPayments() {
     return this.afs.collection('payments').snapshotChanges()
       // https://github.com/angular/angularfire2/issues/1973
       .pipe(
